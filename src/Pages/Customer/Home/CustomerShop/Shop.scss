@@ -1,0 +1,31 @@
+.react-tabs__tab-list {
+    display: flex;
+    justify-content: center;
+    border: none;
+
+
+    .react-tabs__tab {
+      transition: all .5s;
+
+      &:focus {
+
+        display: none;
+      }
+
+      &:hover {
+        border: 1px solid #263238;
+        border-radius: 20px;
+      }
+    }
+
+    .react-tabs__tab--selected {
+
+      background-color: #263238;
+      border-radius: 20px;
+      color: white;
+      border: none;
+
+
+    }
+
+  }

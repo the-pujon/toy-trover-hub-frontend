@@ -1,0 +1,66 @@
+.navbar {
+    ul {
+        li {
+            a {
+                position: relative;
+                margin: 0 5px;
+                padding: 0 5px;
+
+                &::after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    bottom: -0.2rem;
+                    left: 0;
+                    border-radius: 10rem;
+                    width: 0;
+                    height: 1.5px;
+                    background-color: white;
+                    transition: all .5s;
+                }
+
+
+                &:active {
+                    background: none;
+
+                    &::after {
+                        opacity: 1;
+                    }
+                }
+
+                &:hover {
+                    &::after {
+                        //opacity: 1;
+                        width: 100%;
+                    }
+                }
+
+                &:focus {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+}
+
+.active {
+    color: var(--primaryColor);
+    background-color: transparent;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: -.2rem;
+        border-radius: 10rem;
+
+        left: 0;
+        //left: 2.1rem;//border-radius: 50%;
+        display: block;
+        width: 100%;
+        height: 1.5px;
+        background-color: white;
+
+
+    }
+}
