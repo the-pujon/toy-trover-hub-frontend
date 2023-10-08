@@ -34,6 +34,9 @@ const Banner = () => {
             <button class="cta">know more</button>
           </article>
 
+
+
+
           <figure class="mainHeading__image">
             <img
               src={img}

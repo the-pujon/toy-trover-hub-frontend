@@ -5,7 +5,7 @@ import Shop from "./CustomerShop/CustomerShop";
 import {useLoaderData} from "react-router-dom";
 
 const Home = () => {
-  const loadedToys = useLoaderData();
+  const loadedToys = useLoaderData().slice(10);
   return (
     <div>
       <Banner />

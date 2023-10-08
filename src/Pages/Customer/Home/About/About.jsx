@@ -4,7 +4,7 @@ import aboutImage from "../../../../assets/about.jpg";
 
 const About = () => {
   return (
-    <div className="">
+    <div className="h-[50rem] flex items-center justify-center">
       {/*<div className="sm:flex sm:flex-col md:relative wrapper">
         <div className="text-7xl sm:mb-6 sm:text-center md:absolute md:top-28 md:left-4 text-[#263238]">
           About us
@@ -29,16 +29,16 @@ const About = () => {
           embark on unforgettable adventures with Venture Toy Verse.
         </div>
       </div>*/}
-      <div className=" inset-0  z-30  flex flex-col items-center justify-center wrapper">
+      <div className=" inset-0   flex flex-col items-center justify-center wrapper">
           <div
-            className="shadow-2xl rounded-lg w-4/5 h-96 bg-cover bg-center "
+            className="shadow-2xl rounded-lg w-4/5 h-[30rem] bg-cover bg-center "
             style={{
               backgroundImage: `url(${aboutImage})`,
             }}
           >
             <div className="grid grid-cols-12 gap-1">
               <div className="relative my-6 px-8 col-span-12 sm:col-span-12 md:col-span-7 lg:col-span-7 xxl:col-span-7">
-                <div className="border-l-4 border-white py-20 px-5 mx-2 absolute left-0">
+                <div className="border-l-4 border-white py-36 px-5 mx-5 absolute left-0">
                   <p className="italic text-white text-xl md:text-4xl lg:text-6xl uppercase text-center  font-semibold ">
                     The Mysteries Of Toy Trove Hub
                   </p>
@@ -49,7 +49,7 @@ const About = () => {
                 <div className="absolute border-white border-t-4 bottom-0 py-1 px-4 w-4/5"></div>
               </div>
               <div className="col-span-12 sm:col-span-12 md:col-span-5 lg:col-span-5 xxl:col-span-5">
-                <div className="relative bg-black h-full md:h-96 w-full bg-opacity-50 rounded-tr-lg rounded-br-lg">
+                <div className="relative flex items-center justify-center bg-black h-full md:h-[30rem] w-full bg-opacity-50 rounded-tr-lg rounded-br-lg">
                   <div className="p-8">
                     <p className="text-white text-xs md:text-sm lg:text-xl mb-4">
                       Forests are truly amazing places. Combining impressive
@@ -84,16 +84,7 @@ const About = () => {
           </div>
         </div>
 
-      <div className="z-30 relative items-center justify-center w-full h-full overflow-auto">
-        {/*<div
-          className="inset-0 h-screen bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${aboutImage})`,
-          }}
-        ></div>*/}
-        {/*<div className="absolute inset-0 z-20 flex items-center justify-center h-screen w-full bg-gray-900 bg-opacity-75"></div>*/}
 
-      </div>
     </div>
   );
 };
