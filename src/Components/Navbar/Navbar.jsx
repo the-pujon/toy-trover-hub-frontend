@@ -10,10 +10,16 @@ const navbarOption = (
       <NavLink to="/">Home</NavLink>
     </li>
     <li>
-      <NavLink to="/instructors">All Toys</NavLink>
+      <NavLink to="/allToys">All Toys</NavLink>
     </li>
     <li>
-      <NavLink to="/courses">Blogs</NavLink>
+      <NavLink to="/myToys">My Toys</NavLink>
+    </li>
+    <li>
+      <NavLink to="/addToy">Add Toy</NavLink>
+    </li>
+    <li>
+      <NavLink to="/blogs">Blogs</NavLink>
     </li>
     <li>
       <a

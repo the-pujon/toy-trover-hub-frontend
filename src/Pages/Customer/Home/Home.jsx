@@ -2,15 +2,16 @@ import React from "react";
 import Banner from "./Banner/Banner";
 import About from "./About/About";
 import Shop from "./CustomerShop/CustomerShop";
-import {useLoaderData} from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
 const Home = () => {
-  const loadedToys = useLoaderData().slice(10);
+  const loadedToys = useLoaderData();
+  console.log(loadedToys);
   return (
     <div>
       <Banner />
       <About />
-      <Shop loadedToys={loadedToys}/>
+      <Shop loadedToys={loadedToys} />
     </div>
   );
 };

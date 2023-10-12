@@ -1,31 +1,34 @@
 .react-tabs__tab-list {
-    display: flex;
-    justify-content: center;
-    border: none;
+  display: flex;
+  justify-content: center;
+  border: none;
+  color: white;
 
 
-    .react-tabs__tab {
-      transition: all .5s;
+  .react-tabs__tab {
+    transition: all .5s;
 
-      &:focus {
+    &:focus {
 
-        display: none;
-      }
-
-      &:hover {
-        border: 1px solid #263238;
-        border-radius: 20px;
-      }
+      display: none;
     }
 
-    .react-tabs__tab--selected {
-
-      background-color: #263238;
+    &:hover {
+      background-color: #234c73;
       border-radius: 20px;
       color: white;
       border: none;
-
-
     }
+  }
+
+  .react-tabs__tab--selected {
+
+    background-color: #234c73;
+    border-radius: 20px;
+    color: white;
+    border: none;
+
 
   }
+
+}

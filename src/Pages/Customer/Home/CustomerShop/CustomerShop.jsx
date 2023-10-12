@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ShopCard from '../../../../Components/ShopCard/ShopCard';
@@ -9,9 +9,19 @@ import "./Shop.scss";
 const Shop = ({ loadedToys }) => {
   const [usedToy, setUsedToy] = useState(loadedToys);
   const [toys, setToys] = useState(loadedToys);
+  const [category, setCategory] = useState([]);
+
+
+useEffect(()=>{
+  fetch("/category.json")
+  .then((res) => res.json())
+  .then((data) => {
+    setCategory(data);
+  });
+},[])
 
   const handleSelect = (categoryName) => {
-    setUsedToy(toys.filter((toy) => toy.subCategory === categoryName));
+    setUsedToy(toys.filter((toy) => toy.category === categoryName));
   };
 
   return (
@@ -19,17 +29,17 @@ const Shop = ({ loadedToys }) => {
       <Tabs className='wrapper' >
         <TabList>
           {/* categories */}
-          {["Math Toy", "Science Toy", "Language Toy"].map(
+          {category.map(
             (category, index) => (
-              <Tab key={index} onClick={() => handleSelect(category)}>
-                {category}
+              <Tab key={index} onClick={() => handleSelect(category.value)}  >
+                {category.name}
               </Tab>
             )
           )}
         </TabList>
 
         {/* Showing cards by category */}
-        {["Math Toy", "Science Toy", "Language Toy"].map(
+        {category.map(
           (category, index) => (
             <TabPanel key={index}>
               {/* Showing all card */}

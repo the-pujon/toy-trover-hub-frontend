@@ -1,0 +1,92 @@
+[
+    {
+        "name": "Action Toys",
+        "value": "actionToys",
+        "subcategory": [
+            {
+                "name": "Avengers",
+                "value": "avengers"
+            },
+            {
+                "name": "Marvel",
+                "value": "marvel"
+            },
+            {
+                "name": "DC",
+                "value": "dc"
+            },
+            {
+                "name": "Civil War",
+                "value": "civilWar"
+            },
+            {
+                "name": "Justice League",
+                "value": "justiceLeague"
+            }
+        ]
+    },
+    {
+        "name": "Animal Toys",
+        "value": "animalToys",
+        "subcategory": [
+            {
+                "name": "Dinosaur",
+                "value": "dinosaur"
+            },
+            {
+                "name": "Bird",
+                "value": "bird"
+            },
+            {
+                "name": "Lion",
+                "value": "lion"
+            }
+        ]
+    },
+    {
+        "name": "Language Toys",
+        "value": "languageToys",
+        "subcategory": [
+            {
+                "name": "Word Matching",
+                "value": "wordMatching"
+            },
+            {
+                "name": "English",
+                "value": "english"
+            }
+        ]
+    },
+    {
+        "name": "Sports Cars",
+        "value": "sportsCars",
+        "subcategory": [
+            {
+                "name": "Cars",
+                "value": "cars"
+            },
+            {
+                "name": "Bike",
+                "value": "bike"
+            },
+            {
+                "name": "Formula 1",
+                "value": "formula1"
+            }
+        ]
+    },
+    {
+        "name": "Science Toys",
+        "value": "scienceToys",
+        "subcategory": [
+            {
+                "name": "Physics Toys",
+                "value": "physicsToys"
+            },
+            {
+                "name": "Chemistry Toys",
+                "value": "chemistryToys"
+            }
+        ]
+    }
+]

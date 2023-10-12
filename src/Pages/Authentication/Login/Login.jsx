@@ -13,7 +13,6 @@ const Login = () => {
   const { loginWithEmail, loginWithGoogle, loginWithGithub } = useUser();
 
   const location = useLocation();
-  console.log(location);
 
   const [error, setError] = useState(false);
 
@@ -66,14 +65,11 @@ const Login = () => {
     <>
       <div className="hero min-h-screen bg-none backdrop-blur-sm">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <img src={login1} alt="" className="w-full backdrop-blur-sm" />
+          <img src={login1} alt="" className="w-full" />
 
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-transparent ">
             <form onSubmit={handleLogin} className="card-body bg-transparent">
-              <div
-                className="text-3xl text-center  font-semibold text-secondary "
-                //style={{ color: "#263238" }}
-              >
+              <div className="text-3xl text-center  font-semibold text-secondary ">
                 Please Login
               </div>
               <div className="form-control relative my-6">
@@ -84,7 +80,6 @@ const Login = () => {
                   type="email"
                   className="peer placeholder-transparent h-10 w-full   bg-transparent text-black focus:outline-none focus:borer-rose-600 border-b-secondary/50 border-b-2"
                   placeholder="email"
-                  //style={{ borderBottom: "2px solid #a8adaf" }}
                   required
                 />
                 <label
@@ -102,7 +97,6 @@ const Login = () => {
                   type="password"
                   className="peer placeholder-transparent h-10 w-full   bg-transparent text-black focus:outline-none focus:borer-rose-600 border-b-secondary/50 border-b-2"
                   placeholder="Password"
-                  //style={{ borderBottom: "2px solid #a8adaf" }}
                   required
                 />
                 <label
@@ -114,7 +108,10 @@ const Login = () => {
               </div>
               <div className="text-xs text-secondary">
                 Don't have an account?{" "}
-                <Link to="/register" className="hover:text-gray-400 hover:underline">
+                <Link
+                  to="/signup"
+                  className="hover:text-gray-400 hover:underline"
+                >
                   Register
                 </Link>
               </div>
@@ -122,11 +119,7 @@ const Login = () => {
                 <div className="text-xs text-warning">There is an error</div>
               )}
               <div className="form-control mt-6">
-                <button
-                  type="submit"
-                  className="toyButton  "
-                  //style={{ background: "#263238" }}
-                >
+                <button type="submit" className="toyButton  ">
                   Login
                 </button>
               </div>
@@ -136,7 +129,6 @@ const Login = () => {
                 {/* login with github button */}
                 <div
                   className="btn btn-circle border-secondary text-secondary "
-                  //style={{ background: "#263238" }}
                   onClick={handleGithubLogin}
                 >
                   <FaGithub className="text-3xl" />
@@ -145,7 +137,6 @@ const Login = () => {
                   //login with google button
 
                   className="btn btn-circle border-secondary "
-                  //style={{ background: "#263238" }}
                   onClick={handleGoogleLogin}
                 >
                   <FcGoogle className="text-3xl" />
