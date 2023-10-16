@@ -37,16 +37,40 @@ const Login = () => {
       });
   };
 
-  //login With google
+  //registration by google
   const handleGoogleLogin = () => {
     loginWithGoogle()
       .then((res) => {
-        navigate("/");
+        //console.log(res.user);
+        //navigate("/");
+        const { displayName, email, photoURL } = res.user;
+
+        fetch(`http://localhost:5000/api/users/${email}`)
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data) {
+              navigate("/");
+            } else {
+              fetch("http://localhost:5000/api/users", {
+                method: "POST",
+                headers: { "Content-type": "application/json" },
+                body: JSON.stringify({
+                  name: displayName,
+                  email,
+                  image: photoURL,
+                }),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  console.log(data);
+                  navigate("/");
+                })
+                .catch((err) => console.error(err));
+            }
+          });
       })
-      .catch((err) => {
-        console.log(err);
-        setError(true);
-      });
+      .catch((err) => console.log(err));
   };
 
   //login with github

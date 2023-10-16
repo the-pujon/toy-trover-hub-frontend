@@ -3,44 +3,41 @@ import { Link, NavLink } from "react-router-dom";
 import "./Navbar.scss";
 import { useUser } from "../../Hooks/useUser";
 import { AiOutlineLogin } from "react-icons/ai";
-import Login from "../../Pages/Authentication/Login/Login";
-const navbarOption = (
-  <>
-    <li>
-      <NavLink to="/">Home</NavLink>
-    </li>
-    <li>
-      <NavLink to="/allToys">All Toys</NavLink>
-    </li>
-    <li>
-      <NavLink to="/myToys">My Toys</NavLink>
-    </li>
-    <li>
-      <NavLink to="/addToy">Add Toy</NavLink>
-    </li>
-    <li>
-      <NavLink to="/blogs">Blogs</NavLink>
-    </li>
-    <li>
-      <a
-      //to={`/dashboard/${
-      //  role === "admin"
-      //    ? "manageUsers"
-      //    : role === "instructor"
-      //    ? "myClasses"
-      //    : "selectedClass"
-      //}`}
-      >
-        Dashboard
-      </a>
-    </li>
-  </>
-);
+
 const Navbar = () => {
-  const { loggedUser } = useUser();
+  const { loggedUser, logOut, userLoading } = useUser();
+  console.log(loggedUser);
+
+  const navbarOption = (
+    <>
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/allToys">All Toys</NavLink>
+      </li>
+      {loggedUser && (
+        <>
+          <li>
+            <NavLink to="/myToys">My Toys</NavLink>
+          </li>
+          <li>
+            <NavLink to="/addToy">Add Toy</NavLink>
+          </li>
+        </>
+      )}
+    </>
+  );
+
+  const handleLogOut = (e) => {
+    e.preventDefault();
+    logOut().then(() => console.log("logout"));
+  };
 
   return (
-    <div className="backdrop-blur-md shadow-md  bg-primary/20  text-white fixed z-50 w-full">
+    <div
+      className={`backdrop-blur-md shadow-md  bg-primary/20  text-white fixed z-50 w-full   `}
+    >
       <div className="wrapper   ">
         <div className="navbar">
           <div className="navbar-start">
@@ -68,13 +65,16 @@ const Navbar = () => {
                 {navbarOption}
               </ul>
             </div>
-            <Link to="/" className="normal-case text-xl">
-              TTH
+            <Link to="/" className="normal-case ">
+              <h1 className="text-center text-6xl font-bold flex items-end">
+                TTH
+                <span className="text-xl   font-semibold">Toy Trover Hub</span>
+              </h1>
             </Link>
           </div>
 
           <div className="navbar-end">
-            <ul className=" menu menu-horizontal px-1 hidden md:flex">
+            <ul className=" menu menu-horizontal px-1 hidden md:flex text-xl font-semibold">
               {navbarOption}
             </ul>
 
@@ -101,15 +101,13 @@ const Navbar = () => {
                 </label>
                 <div
                   tabIndex={0}
-                  className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow bg-primary"
+                  className="mt-3 z-[1] card card-compact dropdown-content w-52  shadow bg-primary"
                 >
                   <div className="card-body">
                     <span className="font-bold text-lg">8 Items</span>
                     <span className="text-info">Subtotal: $999</span>
                     <div className="card-actions">
-                      <button className="toyButton btn-block">
-                        View cart
-                      </button>
+                      <button className="toyButton btn-block">View cart</button>
                     </div>
                   </div>
                 </div>
@@ -129,18 +127,12 @@ const Navbar = () => {
                   </label>
                   <ul
                     tabIndex={0}
-                    className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 "
+                    className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-primary rounded-box w-52 "
                   >
-                    <li>
-                      <a className="justify-between">
-                        Profile
-                        <span className="badge">New</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>Settings</a>
-                    </li>
-                    <li>
+                    <li
+                      className="toyButton rounded-box"
+                      onClick={handleLogOut}
+                    >
                       <a>Logout</a>
                     </li>
                   </ul>
@@ -148,14 +140,8 @@ const Navbar = () => {
               ) : (
                 <>
                   <ul>
-                    <li className="border p-2 rounded-3xl">
-                      <NavLink
-                        to="/login"
-                        className={
-                          "text-xl text-white font-semibold flex items-center "
-                        }
-                      >
-                        {" "}
+                    <li className="toyButton !p-2 !m-0">
+                      <NavLink to="/login" className={" flex items-center"}>
                         <AiOutlineLogin /> Login
                       </NavLink>
                     </li>

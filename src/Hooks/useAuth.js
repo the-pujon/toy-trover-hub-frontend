@@ -7,12 +7,13 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { auth } from "../Firebase/firebase.init";
 
 const useAuth = () => {
   const [loggedUser, setLoggedUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [userLoading, setUserLoading] = useState(true);
 
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
@@ -53,9 +54,29 @@ const useAuth = () => {
   //onState
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (currentUser) => {
-      setLoggedUser(currentUser);
-      setLoading(false);
-      console.log(currentUser);
+      if (currentUser) {
+        fetch("http://localhost:5000/api/users/jwt", {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify({ email: currentUser.email }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            fetch(`http://localhost:5000/api/users/${currentUser.email}`)
+              .then((res) => res.json())
+              .then((d) => {
+                currentUser.role = d.role;
+                setLoggedUser(currentUser);
+                setLoading(false);
+                setUserLoading(false);
+              });
+
+            localStorage.setItem("access-token", data.token);
+          });
+      } else {
+        localStorage.removeItem("access-token");
+        setUserLoading(false);
+      }
     });
 
     return () => {
@@ -71,6 +92,7 @@ const useAuth = () => {
     logOut,
     loggedUser,
     loading,
+    userLoading,
   };
 };
 

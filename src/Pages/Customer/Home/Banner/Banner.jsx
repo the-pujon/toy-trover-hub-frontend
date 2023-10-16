@@ -23,7 +23,7 @@ const Banner = () => {
         </div>
       </div>*/}
       <header class="mainHeading ">
-        <div class="mainHeading__content wrapper text-white">
+        <div class="mainHeading__content wrapper text-secondary">
           <article class="mainHeading__text backdrop-blur-md rounded-e-3xl">
             <p class="mainHeading__preTitle">Toy Store</p>
             <h2 class="mainHeading__title">Toy Trove Hub</h2>

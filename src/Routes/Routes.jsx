@@ -8,6 +8,7 @@ import SingleToy from "../Pages/Customer/SingleToy/SingleToy/SingleToy";
 import AllToys from "../Pages/Seller/AllToys/AllToys/AllToys";
 import MyToys from "../Pages/Seller/MyToys/MyToys";
 import EditToy from "../Pages/Seller/EditToy/EditToy";
+import PrivateRoute from "./PrivateRoute";
 
 const Routes = createBrowserRouter([
   {
@@ -29,11 +30,19 @@ const Routes = createBrowserRouter([
       },
       {
         path: "addToy",
-        element: <AddToy />,
+        element: (
+          <PrivateRoute>
+            <AddToy />
+          </PrivateRoute>
+        ),
       },
       {
         path: "toys/:id",
-        element: <SingleToy />,
+        element: (
+          <PrivateRoute>
+            <SingleToy />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/allToys",
@@ -41,11 +50,19 @@ const Routes = createBrowserRouter([
       },
       {
         path: "myToys",
-        element: <MyToys />,
+        element: (
+          <PrivateRoute>
+            <MyToys />
+          </PrivateRoute>
+        ),
       },
       {
         path: "editToy/:id",
-        element: <EditToy />,
+        element: (
+          <PrivateRoute>
+            <EditToy />
+          </PrivateRoute>
+        ),
       },
     ],
   },

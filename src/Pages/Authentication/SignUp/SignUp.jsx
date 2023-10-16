@@ -9,7 +9,7 @@ import signup1 from "../../../assets/Auth/login2.svg";
 
 import { updateProfile } from "firebase/auth";
 import { useUser } from "../../../Hooks/useUser";
-import {auth} from "../../../Firebase/firebase.init";
+import { auth } from "../../../Firebase/firebase.init";
 
 const SignUp = () => {
   const { registrationWithEmail, loginWithGoogle, loginWithGithub } = useUser();
@@ -35,7 +35,20 @@ const SignUp = () => {
           photoURL: photoURL,
         })
           .then((res) => {
-            navigate("/");
+            //console.log(res);
+            //navigate("/");
+
+            fetch("http://localhost:5000/api/users", {
+              method: "POST",
+              headers: { "Content-type": "application/json" },
+              body: JSON.stringify({ name, email, password, image: photoURL }),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log(data);
+                navigate("/");
+              })
+              .catch((err) => console.error(err));
           })
           .catch((err) => console.error(err));
       })
@@ -46,7 +59,34 @@ const SignUp = () => {
   const handleGoogleLogin = () => {
     loginWithGoogle()
       .then((res) => {
-        navigate("/");
+        //console.log(res.user);
+        //navigate("/");
+        const { displayName, email, photoURL } = res.user;
+
+        fetch(`http://localhost:5000/api/users/${email}`)
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data) {
+              navigate("/");
+            } else {
+              fetch("http://localhost:5000/api/users", {
+                method: "POST",
+                headers: { "Content-type": "application/json" },
+                body: JSON.stringify({
+                  name: displayName,
+                  email,
+                  image: photoURL,
+                }),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  console.log(data);
+                  navigate("/");
+                })
+                .catch((err) => console.error(err));
+            }
+          });
       })
       .catch((err) => console.log(err));
   };

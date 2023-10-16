@@ -17,10 +17,10 @@ const ShopCard = ({ toy }) => {
   } = toy;
 
   return (
-    <Link to={`/toys/${_id}`}>
-      <div className="w-80  shadow rounded bg-[rgba(255,255,255,0.1)] backdrop-blur-sm">
-        <div className="h-48 w-full relative  flex flex-col justify-between bg-cover bg-center">
-          <img src={toyImage[0]} alt="" className="w-80 h-48" />
+    <>
+      <div className="w-80 rounded-xl bg-[rgba(0,0,0,0.1)] backdrop-blur-sm shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300">
+        <Link  to={`/toys/${_id}`} className="h-48 w-full relative  flex flex-col justify-between bg-cover bg-center rounded-xl">
+          <img src={toyImage[0]} alt="" className="w-80 h-48 rounded-t-xl" />
           <div
             className={`absolute bottom-3 right-2 text-white p-[.15rem_.65rem] backdrop-blur-md rounded-full border border-transparent bg-primary`}
           >
@@ -30,7 +30,7 @@ const ShopCard = ({ toy }) => {
               0.0
             </span>{" "}
           </div>
-        </div>
+        </Link>
         <div className="p-4 flex flex-col items-center">
           <p className="text-secondary/60 font-light text-sm italic text-center">
           This toy sells by  {sellerName}
@@ -94,7 +94,7 @@ const ShopCard = ({ toy }) => {
           </button>
         </div>
       </div>
-    </Link>
+    </>
   );
 };
 

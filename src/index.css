@@ -8,13 +8,14 @@
 
 :root {
   /*background: linear-gradient(-45deg, #6499e9, #9eddff, #a6f6ff, #befff7);*/
-  background-image: linear-gradient(to top, #9dc7f7 0%, #e7f0fd 100%);
+  background-image: linear-gradient(to top, #e7fa40 -50%, #e77f5a 100%);
   /*background-size: 400% 400%;*/
   /*animation: gradient 15s ease infinite;*/
   /*height: 100vh;*/
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  scroll-behavior: smooth;
 }
 
 /* width */
