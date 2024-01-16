@@ -26,51 +26,62 @@ const Shop = () => {
       });
   }, []);
 
+  //for search
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
 
-    //for search
-    const handleChange = (e) => {
-      setSearch(e.target.value);
-    };
+  //for search
+  useEffect(() => {
+    let value = search.toLowerCase();
+    let toySearch = allToys.filter((data) => {
+      const name = data.name.toLowerCase();
+      return name.startsWith(value);
+    });
+    setFilteredToys(toySearch);
+  }, [search]);
 
-    //for search
-    useEffect(() => {
-      let value = search.toLowerCase();
-      let toySearch = allToys.filter((data) => {
-        const name = data.name.toLowerCase();
-        return name.startsWith(value);
-      });
-      setFilteredToys(toySearch);
-    }, [search]);
+  //for search
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    //for search
-    const handleSubmit = (e) => {
-      e.preventDefault();
+    let value = search.toLowerCase();
 
-      let value = search.toLowerCase();
+    let toySearch = allToys.filter((data) => {
+      const name = data.name.toLowerCase();
+      return name === value;
+    });
 
-      let toySearch = allToys.filter((data) => {
-        const name = data.name.toLowerCase();
-        return name === value;
-      });
+    setFilteredToys(toySearch);
+  };
 
-      setFilteredToys(toySearch);
-    };
+  const handleSort = (e) => {
+    if (e.target.value === "price-lowest") {
+      const sortedToys = [...allToys].sort((a, b) => a.price - b.price);
+      setFilteredToys(sortedToys);
+    }
 
-    const handleSort = (e) => {
-      if (e.target.value === "price-lowest") {
-        const s = [...allToys].sort((a, b) => a.price - b.price);
-        setFilteredToys(s);
-      }
+    if (e.target.value === "price-highest") {
+      const sortedToys = [...allToys].sort((b, a) => a.price - b.price);
+      setFilteredToys(sortedToys);
+    }
+  };
 
-      if (e.target.value === "price-highest") {
-        const s = [...allToys].sort((b, a) => a.price - b.price);
-        setFilteredToys(s);
-      }
-    };
-
-
-  const handleTestClick = () => {
+  //TODO: All toys must have categorySlug and subCategorySlug
+  //TODO: change all categoryName and subCategoryName into categorySlug and subCategorySlug
+  const handleFilter = (value) => {
+    console.log(value)
+    //let value = search.toLowerCase();
+    let afterFilter = allToys.filter((data) => {
+      const filterByCategory = data.category.toLowerCase();
+      const filterBySubCategory = data.subcategory.toLowerCase();
+      return (
+        filterByCategory === value.toLowerCase() ||
+        filterBySubCategory === value.toLowerCase()
+      );
+    });
     console.log("done");
+    setFilteredToys(afterFilter);
   };
 
   return (
@@ -78,10 +89,11 @@ const Shop = () => {
       <div>
         <div className="flex gap-5 justify-between items-center my-5 px-5">
           <div className="dropdown dropdown-right dropdown-bottom ">
-            <label tabIndex={0} className=" text-white p-2 hover:border cursor-pointer border-secondary">
-
-                <AiOutlineMenuUnfold className="text-3xl" />
-
+            <label
+              tabIndex={0}
+              className=" text-white p-2 cursor-pointer"
+            >
+              <AiOutlineMenuUnfold className="text-3xl" />
             </label>
             <div
               tabIndex={0}
@@ -95,12 +107,17 @@ const Shop = () => {
                 {category?.map((item, index) => (
                   <li key={index}>
                     <details close>
-                      <summary onClick={handleTestClick}>{item.name}</summary>
-                      <ul className="flex flex-col" >
+                      <summary onClick={() => handleFilter(item.value)}>
+                        {item.name}
+                      </summary>
+                      <ul className="flex flex-col">
                         {item?.subcategory.length !== 0 &&
-                          item?.subcategory?.map((s, i) => <li className="p-2" >
-                            {console.log(s)}
-                            {s.name}</li>)}
+                          item?.subcategory?.map((s, i) => (
+                            <li className="p-2 cursor-pointer" onClick={()=>handleFilter(s.value)} >
+                              {console.log(s)}
+                              {s.name}
+                            </li>
+                          ))}
                       </ul>
                     </details>
                   </li>
@@ -123,7 +140,7 @@ const Shop = () => {
             <select
               className="px-4 py-2 border text-secondary border-secondary bg-transparent rounded-lg focus:outline-none"
               //  value="{sortOption}"
-                onChange={handleSort}
+              onChange={handleSort}
             >
               <option value="" className="text-primary">
                 Sort By
