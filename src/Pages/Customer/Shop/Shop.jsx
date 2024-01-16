@@ -56,6 +56,18 @@ const Shop = () => {
       setFilteredToys(toySearch);
     };
 
+    const handleSort = (e) => {
+      if (e.target.value === "price-lowest") {
+        const s = [...allToys].sort((a, b) => a.price - b.price);
+        setFilteredToys(s);
+      }
+
+      if (e.target.value === "price-highest") {
+        const s = [...allToys].sort((b, a) => a.price - b.price);
+        setFilteredToys(s);
+      }
+    };
+
 
   const handleTestClick = () => {
     console.log("done");
@@ -111,7 +123,7 @@ const Shop = () => {
             <select
               className="px-4 py-2 border text-secondary border-secondary bg-transparent rounded-lg focus:outline-none"
               //  value="{sortOption}"
-              //  onChange={handleSort}
+                onChange={handleSort}
             >
               <option value="" className="text-primary">
                 Sort By
