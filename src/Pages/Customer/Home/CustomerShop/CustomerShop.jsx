@@ -5,6 +5,7 @@ import ShopCard from '../../../../Components/ShopCard/ShopCard';
 import "./Shop.scss";
 import { useUser } from './../../../../Hooks/useUser';
 
+//TODO: Change function name
 
 
 const Shop = ({ loadedToys }) => {
