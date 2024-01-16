@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 const QuantityUpdate = ({ quantity, setQuantity, className }) => {
+  //console.log(quantity)
   const handleQuantity = (type) => {
     if (type === "minus" && quantity > 1) {
       setQuantity(quantity - 1);
@@ -15,7 +16,7 @@ const QuantityUpdate = ({ quantity, setQuantity, className }) => {
   return (
     <div className="flex items-center gap-5">
       <div
-        className={`flex items-center justify-center gap-2 border py-3 px-5 rounded-50 bg-white w-[182px] ${className}`}
+        className={`flex items-center justify-center gap-2 border py-3 px-5 rounded-50 bg-transparent text-secondary w-[182px] ${className}`}
       >
         <button
           className="text-base"
@@ -32,7 +33,7 @@ const QuantityUpdate = ({ quantity, setQuantity, className }) => {
           value={quantity}
           id="productQuantity"
           name="productQuantity"
-          className="bg-transparent  text-center text-black text-sm outline-none  font-normal w-24"
+          className="bg-transparent  text-center text-secondary font-bold text-sm outline-none w-16"
         />
         <button
           className="text-base"

@@ -6,7 +6,6 @@ const PrivateRoute = ({ children }) => {
   const { loggedUser, userLoading } = useUser();
 
   if (userLoading) {
-    console.log("here");
     return (
       <div className="h-screen flex items-center justify-center  backdrop-blur-lg">
         {/*<span className="loading loading-bars loading-lg"></span>*/}

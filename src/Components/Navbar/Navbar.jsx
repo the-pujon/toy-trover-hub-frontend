@@ -6,7 +6,6 @@ import { AiOutlineLogin } from "react-icons/ai";
 
 const Navbar = () => {
   const { loggedUser, logOut, userLoading } = useUser();
-  console.log(loggedUser);
 
   const navbarOption = (
     <>
@@ -75,7 +74,13 @@ const Navbar = () => {
 
           <div className="navbar-end">
             <ul className=" menu menu-horizontal px-1 hidden md:flex text-xl font-semibold">
-              {navbarOption}
+              {/*{navbarOption}*/}
+              <li>
+              <NavLink to="/">Home</NavLink>
+              </li>
+              <li>
+              <NavLink to="/shop">Shop</NavLink>
+              </li>
             </ul>
 
             {loggedUser && (
@@ -101,9 +106,13 @@ const Navbar = () => {
                 </label>
                 <div
                   tabIndex={0}
-                  className="mt-3 z-[1] card card-compact dropdown-content w-52  shadow bg-primary"
+                  className="mt-3 z-[1] card card-compact dropdown-content w-52  shadow"
+                  style={{
+                    background:
+                      "linear-gradient(to top, #e7fa40 -50%, #e77f5a 100%)",
+                  }}
                 >
-                  <div className="card-body">
+                  <div className="card-body backdrop-blur-sm">
                     <span className="font-bold text-lg">8 Items</span>
                     <span className="text-info">Subtotal: $999</span>
                     <div className="card-actions">
@@ -127,8 +136,13 @@ const Navbar = () => {
                   </label>
                   <ul
                     tabIndex={0}
-                    className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-primary rounded-box w-52 "
+                    className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shado rounded-box w-52 "
+                    style={{
+                      background:
+                        "linear-gradient(to top, #e7fa40 -50%, #e77f5a 100%)",
+                    }}
                   >
+                    {navbarOption}
                     <li
                       className="toyButton rounded-box"
                       onClick={handleLogOut}
