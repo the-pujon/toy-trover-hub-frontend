@@ -27,7 +27,34 @@ const Shop = () => {
   }, []);
 
 
+    //for search
+    const handleChange = (e) => {
+      setSearch(e.target.value);
+    };
 
+    //for search
+    useEffect(() => {
+      let value = search.toLowerCase();
+      let toySearch = allToys.filter((data) => {
+        const name = data.name.toLowerCase();
+        return name.startsWith(value);
+      });
+      setFilteredToys(toySearch);
+    }, [search]);
+
+    //for search
+    const handleSubmit = (e) => {
+      e.preventDefault();
+
+      let value = search.toLowerCase();
+
+      let toySearch = allToys.filter((data) => {
+        const name = data.name.toLowerCase();
+        return name === value;
+      });
+
+      setFilteredToys(toySearch);
+    };
 
 
   const handleTestClick = () => {
