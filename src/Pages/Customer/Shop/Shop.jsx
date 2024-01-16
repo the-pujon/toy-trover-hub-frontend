@@ -8,6 +8,7 @@ const Shop = () => {
   const [FilteredToys, setFilteredToys] = useState([]);
   const [category, setCategory] = useState([]);
   const [search, setSearch] = useState("");
+  const [filterTextActive, setFilterTextActive] = useState('')
 
   const { get } = useApi();
 
@@ -72,6 +73,7 @@ const Shop = () => {
   const handleFilter = (value) => {
     console.log(value)
     //let value = search.toLowerCase();
+    setFilterTextActive(value)
     let afterFilter = allToys.filter((data) => {
       const filterByCategory = data.category.toLowerCase();
       const filterBySubCategory = data.subcategory.toLowerCase();
@@ -107,14 +109,13 @@ const Shop = () => {
                 {category?.map((item, index) => (
                   <li key={index}>
                     <details close>
-                      <summary onClick={() => handleFilter(item.value)}>
+                      <summary onClick={() => handleFilter(item.value)} className={`hover:bg-secondary hover:text-primary ${filterTextActive === item.value  && "bg-secondary text-primary"}`} >
                         {item.name}
                       </summary>
                       <ul className="flex flex-col">
                         {item?.subcategory.length !== 0 &&
                           item?.subcategory?.map((s, i) => (
-                            <li className="p-2 cursor-pointer" onClick={()=>handleFilter(s.value)} >
-                              {console.log(s)}
+                            <li className={`rounded-md p-2 cursor-pointer hover:bg-secondary hover:text-primary ${filterTextActive === s.value  && "bg-secondary text-primary"}`} onClick={()=>handleFilter(s.value)} >
                               {s.name}
                             </li>
                           ))}
