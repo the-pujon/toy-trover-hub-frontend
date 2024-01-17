@@ -20,11 +20,11 @@ const CartDropDownContent = ({ cartItems }) => {
               key={i}
               className="flex items-center gap-2 justify-between p-2"
             >
-              <div className="w-1/3">
+              <div className="w-1/3 rounded-md">
                 <img
                   src={product?.image}
                   alt="product image"
-                  className="w-16 h-10"
+                  className="w-16 h-10 rounded-md"
                 />
               </div>
               <div className="flex flex-col w-1/3">
