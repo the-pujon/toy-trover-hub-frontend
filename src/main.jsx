@@ -5,12 +5,14 @@ import { RouterProvider } from "react-router-dom";
 import Routes from "./Routes/Routes.jsx";
 import { AuthProvider } from "./Context/AuthContext";
 import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
+import store from "./app/store.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <Provider store={store}>
    <Toaster />
     <AuthProvider>
       <RouterProvider router={Routes} />
     </AuthProvider>
-  </React.StrictMode>
+  </Provider>
 );
