@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import useApi from "../../../Hooks/useApi";
 import ShopCard from "../../../Components/ShopCard/ShopCard";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
+//import { FaSortAmountDownAlt, FaSortAmountUp } from "react-icons/fa";
 
 const Shop = () => {
   const [allToys, setAllToys] = useState([]);
   const [FilteredToys, setFilteredToys] = useState([]);
   const [category, setCategory] = useState([]);
   const [search, setSearch] = useState("");
-  const [filterTextActive, setFilterTextActive] = useState('')
+  const [filterTextActive, setFilterTextActive] = useState("all");
 
   const { get } = useApi();
 
   useEffect(() => {
     get("toys").then((res) => {
-      console.log(res);
       setAllToys(res);
       setFilteredToys(res);
     });
@@ -22,7 +22,6 @@ const Shop = () => {
     fetch("/category.json")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCategory(data);
       });
   }, []);
@@ -71,30 +70,32 @@ const Shop = () => {
   //TODO: All toys must have categorySlug and subCategorySlug
   //TODO: change all categoryName and subCategoryName into categorySlug and subCategorySlug
   const handleFilter = (value) => {
-    console.log(value)
+    console.log(value);
     //let value = search.toLowerCase();
-    setFilterTextActive(value)
-    let afterFilter = allToys.filter((data) => {
-      const filterByCategory = data.category.toLowerCase();
-      const filterBySubCategory = data.subcategory.toLowerCase();
-      return (
-        filterByCategory === value.toLowerCase() ||
-        filterBySubCategory === value.toLowerCase()
-      );
-    });
-    console.log("done");
-    setFilteredToys(afterFilter);
+    setFilterTextActive(value);
+
+    if (value === "all") {
+      setFilteredToys(allToys);
+    } else {
+      let afterFilter = allToys.filter((data) => {
+        const filterByCategory = data.category.toLowerCase();
+        const filterBySubCategory = data.subcategory.toLowerCase();
+        return (
+          filterByCategory === value.toLowerCase() ||
+          filterBySubCategory === value.toLowerCase()
+        );
+      });
+      console.log("done");
+      setFilteredToys(afterFilter);
+    }
   };
 
   return (
-    <div className="wrapper min-h-screen pt-32">
+    <div className="wrapper min-h-screen pt-28 pb-10">
       <div>
         <div className="flex gap-5 justify-between items-center my-5 px-5">
           <div className="dropdown dropdown-right dropdown-bottom ">
-            <label
-              tabIndex={0}
-              className=" text-white p-2 cursor-pointer"
-            >
+            <label tabIndex={0} className=" text-white p-2 cursor-pointer">
               <AiOutlineMenuUnfold className="text-3xl" />
             </label>
             <div
@@ -105,17 +106,37 @@ const Shop = () => {
                   "linear-gradient(to top, #e7fa40 -50%, #e77f5a 100%)",
               }}
             >
-              <ul className="menu bg-base-200 w-56 !rounded-full p-5 text-secondary flex flex-col ">
+              <ul className="menu bg-base-200 w-56 !rounded-full p-5 text-secondary flex flex-col gap-1">
+                <li
+                  className={`hover:bg-secondary hover:text-primary rounded-md  cursor-pointer ${
+                    filterTextActive === "all" && "bg-secondary text-primary"
+                  }`}
+                  onClick={() => handleFilter("all")}
+                >
+                  <span className="pl-4">All</span>
+                </li>
                 {category?.map((item, index) => (
                   <li key={index}>
                     <details close>
-                      <summary onClick={() => handleFilter(item.value)} className={`hover:bg-secondary hover:text-primary ${filterTextActive === item.value  && "bg-secondary text-primary"}`} >
+                      <summary
+                        onClick={() => handleFilter(item.value)}
+                        className={`hover:bg-secondary hover:text-primary ${
+                          filterTextActive === item.value &&
+                          "bg-secondary text-primary"
+                        }`}
+                      >
                         {item.name}
                       </summary>
-                      <ul className="flex flex-col">
+                      <ul className="flex flex-col gap-1">
                         {item?.subcategory.length !== 0 &&
                           item?.subcategory?.map((s, i) => (
-                            <li className={`rounded-md p-2 cursor-pointer hover:bg-secondary hover:text-primary ${filterTextActive === s.value  && "bg-secondary text-primary"}`} onClick={()=>handleFilter(s.value)} >
+                            <li
+                              className={`rounded-md p-2 cursor-pointer hover:bg-secondary hover:text-primary ${
+                                filterTextActive === s.value &&
+                                "bg-secondary text-primary"
+                              }`}
+                              onClick={() => handleFilter(s.value)}
+                            >
                               {s.name}
                             </li>
                           ))}
@@ -137,26 +158,39 @@ const Shop = () => {
               onChange={handleChange}
             />
           </form>
-          <div>
+
+          <div className="!w-20">
             <select
-              className="px-4 py-2 border text-secondary border-secondary bg-transparent rounded-lg focus:outline-none"
+              className="px-4 !w-20 overflow-auto py-2 border text-secondary border-secondary bg-transparent rounded-lg focus:outline-none appearance-none"
               //  value="{sortOption}"
               onChange={handleSort}
+              style={{ width: "1rem" }}
             >
-              <option value="" className="text-primary">
+              <option value="" className="text-primary !w-20">
                 Sort By
               </option>
 
-              <option value="price-lowest" className="text-primary">
-                Price (Lowest to Highest)
+              <option
+                value="price-lowest"
+                className="text-primary !w-20 appearance-none"
+              >
+                <div className="block sm:hidden"> &#8595;&#8595;</div>
+
+                {/*<span className="!hidden sm:block">
+                  Price (Lowest to Highest) &#8595;
+                </span>*/}
               </option>
-              <option value="price-highest" className="text-primary">
-                Price (Highest to Lowest)
+              <option value="price-highest" className="text-primary !w-20" d>
+                {/*<FaSortAmountUp />*/}
+                <span className="block sm:hidden">&#8593;&#8593;</span>
+                {/*<span className="hidden sm:block">
+                  Price (Highest to Lowest)
+                </span>*/}
               </option>
             </select>
           </div>
         </div>
-        <div className="grid wrapper gap-4 !px-10 grid-cols-1 sm:grid-cols-4">
+        <div className="grid wrapper gap-4 grid-cols-1 sm:grid-cols-4">
           {FilteredToys?.map((toy) => (
             <div key={toy._id}>
               <ShopCard toy={toy} />
