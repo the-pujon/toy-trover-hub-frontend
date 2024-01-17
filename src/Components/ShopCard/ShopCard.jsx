@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import QuantityUpdate from "../QuantityUpdate/QuantityUpdate";
 import { useDispatch, useSelector } from "react-redux";
 import {addItemToCart} from "../../features/CartSlice";
+import { toast } from 'react-hot-toast';
 
 const ShopCard = ({ toy }) => {
   const {
@@ -22,8 +23,6 @@ const ShopCard = ({ toy }) => {
 
   const dispatch = useDispatch();
 
-
-
   const handleAddCart = (product) => {
       const cart = {
         _id: product._id,
@@ -37,8 +36,8 @@ const ShopCard = ({ toy }) => {
         subcategory: product.subcategory,
         category: product.category,
       };
-
       dispatch(addItemToCart( cart));
+      toast.success("Added Successfully")
   };
 
   return (

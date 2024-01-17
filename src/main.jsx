@@ -10,7 +10,15 @@ import store from "./app/store.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-   <Toaster />
+   <Toaster
+   toastOptions={{
+    className: 'text-primary',
+    style: {
+      background:
+      "linear-gradient(to top, #e7fa40 -50%, #e77f5a 100%)",
+    },
+  }}
+   />
     <AuthProvider>
       <RouterProvider router={Routes} />
     </AuthProvider>

@@ -24,12 +24,12 @@ const CartDropDownContent = ({ cartItems }) => {
                 <img
                   src={product?.image}
                   alt="product image"
-                  className="w-16"
+                  className="w-16 h-10"
                 />
               </div>
               <div className="flex flex-col w-1/3">
-                <span className="text-base" >{product.name}</span>
-                <span className="text-xs"> {product.subcategory}</span>
+                <span className="text-base whitespace-nowrap" >{product.name.length > 10 ? `${product.name}...` : product.name}</span>
+                <span className="text-xs whitespace-nowrap"> {product.subcategory.length > 10 ? `${product.subcategory}...` : product.subcategory}</span>
               </div>
               <div className="flex flex-col w-1/3">
                 <span>Quantity: {product.quantity}</span>
