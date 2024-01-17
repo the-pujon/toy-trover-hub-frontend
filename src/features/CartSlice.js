@@ -5,7 +5,7 @@ const loadCartState = () => {
   const cartState = localStorage.getItem("cartState");
   return cartState
     ? JSON.parse(cartState)
-    : { courses: [], totalItem: 0, totalPrice: 0 };
+    : { products: [], totalItem: 0, totalPrice: 0 };
 };
 
 const cartSlice = createSlice({
@@ -13,33 +13,36 @@ const cartSlice = createSlice({
   initialState: loadCartState(), // Initialize with local storage data
   reducers: {
     addItemToCart: (state, action) => {
-      state.courses.push(action.payload);
-      state.totalItem = state.courses.length;
-      state.totalPrice = state.courses.reduce(
+        console.log(state)
+      state.products.push(action.payload);
+      state.totalItem = state.products.length;
+      state.totalPrice = state.products.reduce(
         (total, course) => total + course.price,
         0
       );
+
+      console.log(state)
       // Save the updated cart state to local storage
       localStorage.setItem("cartState", JSON.stringify(state));
     },
     updateItemInCart: (state, action) => {
       const updatedItem = action.payload;
-      const itemIndex = state.courses.findIndex(
+      const itemIndex = state.products.findIndex(
         (item) => item._id === updatedItem._id
       );
       if (itemIndex !== -1) {
-        state.courses[itemIndex] = updatedItem;
+        state.products[itemIndex] = updatedItem;
         // Save the updated cart state to local storage
         localStorage.setItem("cartState", JSON.stringify(state));
       }
     },
     removeItemFromCart: (state, action) => {
       const itemIdToRemove = action.payload;
-      state.courses = state.courses.filter(
+      state.products = state.products.filter(
         (item) => item._id !== itemIdToRemove
       );
-      state.totalItem = state.courses.length;
-      state.totalPrice = state.courses.reduce(
+      state.totalItem = state.products.length;
+      state.totalPrice = state.products.reduce(
         (total, course) => total + course.price,
         0
       );
@@ -48,7 +51,7 @@ const cartSlice = createSlice({
     },
     removeAll: (state, action) => {
 
-      state.courses = [];
+      state.products = [];
       state.totalItem = 0;
       state.totalPrice = 0;
       // Save the updated cart state to local storage

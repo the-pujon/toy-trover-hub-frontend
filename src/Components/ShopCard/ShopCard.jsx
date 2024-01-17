@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import QuantityUpdate from "../QuantityUpdate/QuantityUpdate";
+import { useDispatch, useSelector } from "react-redux";
+import {addItemToCart} from "../../features/CartSlice";
 
 const ShopCard = ({ toy }) => {
   const {
@@ -17,6 +19,37 @@ const ShopCard = ({ toy }) => {
     _id,
   } = toy;
   const [quantity, setQuantity] = useState(1);
+
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart);
+
+  const handleAddCart = (product) => {
+
+
+    //console.log(cartItems.products)
+
+    //const existingProduct = cartItems.products.filter((product)=>{
+    //  return product._id === product._id
+    //})
+    //console.log(existingProduct)
+
+    const cart = {
+      _id: product._id,
+      name: product.name,
+      image: product.toyImage[0],
+      quantity: quantity,
+      price: product.price,
+      total: quantity * product.price,
+      sellerName: product.sellerName,
+      sellerEmail: product.sellerEmail,
+      subcategory: product.subcategory,
+      category: product.category
+    };
+    console.log(cart);
+
+    dispatch(addItemToCart(cart));
+
+  };
 
   return (
     <>
@@ -43,10 +76,19 @@ const ShopCard = ({ toy }) => {
           <h1 className=" text-center mt-1 text-secondary text-2xl font-semibold">
             {name}
           </h1>
-          <p className="text-center text-secondary mt-1 font-semibold">$ {price}</p>
-          <QuantityUpdate setQuantity={setQuantity} quantity={quantity} className="bg-transparent  w-[130px]" />
+          <p className="text-center text-secondary mt-1 font-semibold">
+            $ {price}
+          </p>
+          <QuantityUpdate
+            setQuantity={setQuantity}
+            quantity={quantity}
+            className="bg-transparent  w-[130px]"
+          />
 
-          <button className="py-2 px-4 toyButton mt-4 w-full flex items-center justify-center">
+          <button
+            onClick={() => handleAddCart(toy)}
+            className="py-2 px-4 toyButton mt-4 w-full flex items-center justify-center"
+          >
             Add to order
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -56,9 +98,9 @@ const ShopCard = ({ toy }) => {
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
               />
             </svg>

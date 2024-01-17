@@ -117,7 +117,7 @@ const Shop = () => {
                 </li>
                 {category?.map((item, index) => (
                   <li key={index}>
-                    <details close>
+                    <details close={'true'}>
                       <summary
                         onClick={() => handleFilter(item.value)}
                         className={`hover:bg-secondary hover:text-primary ${
@@ -131,6 +131,7 @@ const Shop = () => {
                         {item?.subcategory.length !== 0 &&
                           item?.subcategory?.map((s, i) => (
                             <li
+                            key={i}
                               className={`rounded-md p-2 cursor-pointer hover:bg-secondary hover:text-primary ${
                                 filterTextActive === s.value &&
                                 "bg-secondary text-primary"
@@ -174,15 +175,15 @@ const Shop = () => {
                 value="price-lowest"
                 className="text-primary !w-20 appearance-none"
               >
-                <div className="block sm:hidden"> &#8595;&#8595;</div>
+                &#8595;&#8595;
 
                 {/*<span className="!hidden sm:block">
                   Price (Lowest to Highest) &#8595;
                 </span>*/}
               </option>
-              <option value="price-highest" className="text-primary !w-20" d>
+              <option value="price-highest" className="text-primary !w-20">
                 {/*<FaSortAmountUp />*/}
-                <span className="block sm:hidden">&#8593;&#8593;</span>
+               &#8593;&#8593;
                 {/*<span className="hidden sm:block">
                   Price (Highest to Lowest)
                 </span>*/}
