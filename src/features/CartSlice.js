@@ -13,15 +13,28 @@ const cartSlice = createSlice({
   initialState: loadCartState(), // Initialize with local storage data
   reducers: {
     addItemToCart: (state, action) => {
-        console.log(state)
-      state.products.push(action.payload);
+      const newItem = action.payload;
+
+      // Check if the product already exists in the cart
+      const existingItem = state.products.find(
+        (item) => item._id === newItem._id
+      );
+
+      if (existingItem) {
+        // If it exists, update the quantity
+        existingItem.quantity += newItem.quantity;
+      } else {
+        // If it doesn't exist, add the new item
+        state.products.push(newItem);
+      }
+
+      // Update totalItem and totalPrice
       state.totalItem = state.products.length;
       state.totalPrice = state.products.reduce(
-        (total, course) => total + course.price,
+        (total, item) => total + item.total,
         0
       );
 
-      console.log(state)
       // Save the updated cart state to local storage
       localStorage.setItem("cartState", JSON.stringify(state));
     },
@@ -50,7 +63,6 @@ const cartSlice = createSlice({
       localStorage.setItem("cartState", JSON.stringify(state));
     },
     removeAll: (state, action) => {
-
       state.products = [];
       state.totalItem = 0;
       state.totalPrice = 0;
@@ -60,7 +72,11 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addItemToCart, updateItemInCart, removeItemFromCart, removeAll } =
-  cartSlice.actions;
+export const {
+  addItemToCart,
+  updateItemInCart,
+  removeItemFromCart,
+  removeAll,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -21,34 +21,24 @@ const ShopCard = ({ toy }) => {
   const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart);
+
+
 
   const handleAddCart = (product) => {
+      const cart = {
+        _id: product._id,
+        name: product.name,
+        image: product.toyImage[0],
+        quantity: quantity,
+        price: product.price,
+        total: quantity * product.price,
+        sellerName: product.sellerName,
+        sellerEmail: product.sellerEmail,
+        subcategory: product.subcategory,
+        category: product.category,
+      };
 
-
-    //console.log(cartItems.products)
-
-    //const existingProduct = cartItems.products.filter((product)=>{
-    //  return product._id === product._id
-    //})
-    //console.log(existingProduct)
-
-    const cart = {
-      _id: product._id,
-      name: product.name,
-      image: product.toyImage[0],
-      quantity: quantity,
-      price: product.price,
-      total: quantity * product.price,
-      sellerName: product.sellerName,
-      sellerEmail: product.sellerEmail,
-      subcategory: product.subcategory,
-      category: product.category
-    };
-    console.log(cart);
-
-    dispatch(addItemToCart(cart));
-
+      dispatch(addItemToCart( cart));
   };
 
   return (
