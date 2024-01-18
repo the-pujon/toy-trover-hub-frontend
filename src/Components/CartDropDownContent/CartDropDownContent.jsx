@@ -1,5 +1,6 @@
 import React from "react";
 import { FaOpencart } from "react-icons/fa";
+import {Link} from "react-router-dom";
 
 const CartDropDownContent = ({ cartItems }) => {
   return (
@@ -39,9 +40,9 @@ const CartDropDownContent = ({ cartItems }) => {
           ))}
         </div>
       </>
-      <div>
+      <Link to={`cart`} >
         <button className="toyButton w-full" >View Cart</button>
-      </div>
+      </Link>
     </div>
   );
 };

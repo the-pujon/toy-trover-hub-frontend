@@ -10,6 +10,7 @@ import MyToys from "../Pages/Seller/MyToys/MyToys";
 import EditToy from "../Pages/Seller/EditToy/EditToy";
 import PrivateRoute from "./PrivateRoute";
 import Shop from "../Pages/Customer/Shop/Shop";
+import Cart from "../Pages/Customer/Cart/Cart";
 
 const Routes = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const Routes = createBrowserRouter([
       {
         path: 'shop',
         element: <Shop/>
+      },
+      {
+        path: 'cart',
+        element: <Cart/>
       },
       {
         path: "toys/:id",

@@ -33,7 +33,7 @@ const QuantityUpdate = ({ quantity, setQuantity, className }) => {
           value={quantity}
           id="productQuantity"
           name="productQuantity"
-          className="bg-transparent  text-center text-secondary font-bold text-sm outline-none w-16"
+          className="bg-transparent  text-center font-bold text-sm outline-none w-full"
         />
         <button
           className="text-base"
