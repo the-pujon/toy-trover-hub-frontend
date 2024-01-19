@@ -61,7 +61,7 @@ const Navbar = () => {
             <Link to="/" className="normal-case ">
               <h1 className="text-center text-3xl sm:text-6xl font-bold flex items-end">
                 TTH
-                {/*<span className="text-xl hidden lg:block font-semibold">Toy Trover Hub</span>*/}
+                <span className="text-xl hidden lg:block font-semibold">Toy Trover Hub</span>
               </h1>
             </Link>
           </div>

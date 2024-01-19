@@ -23,7 +23,7 @@ const Home = () => {
       </div>
 
       <div className="wrapper mt-16">
-        <div class="three text-6xl font-semibold mb-14">
+        <div class="three text-4xl lg:text-6xl font-semibold mb-14">
           <h1>Check Our Popular Toys</h1>
         </div>
         <Shop loadedToys={loadedToys} />
