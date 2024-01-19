@@ -2,7 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.scss";
 import { useUser } from "../../Hooks/useUser";
-import { AiOutlineLogin, AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineLogin, AiOutlineMenu, AiOutlineMenuUnfold, AiOutlineSearch } from "react-icons/ai";
 import CartDropDownContent from "../CartDropDownContent/CartDropDownContent";
 import { useSelector } from "react-redux";
 
@@ -40,29 +40,20 @@ const Navbar = () => {
     <div
       className={`backdrop-blur-md shadow-md  bg-primary/20  text-white fixed z-50 w-full   `}
     >
-      <div className="wrapper   ">
+      <div className="wrapper">
         <div className="navbar">
           <div className="navbar-start">
             <div className="dropdown">
-              <label tabIndex={0} className="btn btn-ghost lg:hidden">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
+              <label tabIndex={0} className="btn btn-ghost lg:hidden mr-2 p-0">
+              <AiOutlineMenuUnfold className="text-2xl sm:text-3xl text-secondary" />
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-black bg-white/5"
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-secondary flex flex-col gap-2"
+                style={{
+                  background:
+                    "linear-gradient(to top, #e7fa40 -50%, #e77f5a 100%)",
+                }}
               >
                 {navbarOption}
               </ul>
@@ -70,18 +61,18 @@ const Navbar = () => {
             <Link to="/" className="normal-case ">
               <h1 className="text-center text-3xl sm:text-6xl font-bold flex items-end">
                 TTH
-                <span className="text-xl hidden sm:block font-semibold">Toy Trover Hub</span>
+                {/*<span className="text-xl hidden lg:block font-semibold">Toy Trover Hub</span>*/}
               </h1>
             </Link>
           </div>
 
-          <div className="navbar-center w-1/4 sm:w-1/2 flex items-center gap-2 border-b ml-4">
+          <div className="navbar-center w-1/3 md:w-7/12 lg:w-5/12 flex items-center gap-2 border-b ml-4">
             <div><AiOutlineSearch className="text-xl text-secondary" /></div>
             <input type="search" name="search" placeholder="Search"  className="text-secondary text-base bg-transparent w-full focus:outline-none placeholder:text-secondary" />
           </div>
 
           <div className="navbar-end">
-            <ul className=" menu menu-horizontal px-1 hidden md:flex text-xl font-semibold">
+            <ul className=" menu menu-horizontal px-1 hidden lg:flex text-xl font-semibold">
               {/*{navbarOption}*/}
               <li>
                 <NavLink to="/">Home</NavLink>
@@ -92,7 +83,7 @@ const Navbar = () => {
             </ul>
 
             {loggedUser && (
-              <div className="dropdown dropdown-end">
+              <div className="dropdown dropdown-end ">
                 <label tabIndex={0} className="btn btn-ghost btn-circle">
                   <div className="indicator">
                     <svg
