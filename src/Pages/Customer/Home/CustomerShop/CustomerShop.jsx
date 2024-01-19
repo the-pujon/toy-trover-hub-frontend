@@ -32,7 +32,7 @@ useEffect(()=>{
   return (
     <div>
       <Tabs className='wrapper' >
-        <TabList>
+        <TabList  >
           {/* categories */}
           {category.map(
             (category, index) => (
@@ -48,7 +48,7 @@ useEffect(()=>{
           (category, index) => (
             <TabPanel key={index}>
               {/* Showing all card */}
-              <div className="grid gap-4 m-8 grid-cols-1 md:grid-cols-4">
+              <div className="grid gap-4 sm:m-8 grid-cols-1 md:grid-cols-4">
                 {usedToy?.map((toy) => (
                   <div key={toy._id} >
                     <ShopCard toy={toy} />

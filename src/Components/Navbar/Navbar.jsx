@@ -75,7 +75,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="navbar-center w-1/2 flex items-center gap-2 border-b ml-4">
+          <div className="navbar-center w-1/4 sm:w-1/2 flex items-center gap-2 border-b ml-4">
             <div><AiOutlineSearch className="text-xl text-secondary" /></div>
             <input type="search" name="search" placeholder="Search"  className="text-secondary text-base bg-transparent w-full focus:outline-none placeholder:text-secondary" />
           </div>
