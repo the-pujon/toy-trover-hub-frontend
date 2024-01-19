@@ -2,9 +2,9 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.scss";
 import { useUser } from "../../Hooks/useUser";
-import { AiOutlineLogin } from "react-icons/ai";
+import { AiOutlineLogin, AiOutlineSearch } from "react-icons/ai";
 import CartDropDownContent from "../CartDropDownContent/CartDropDownContent";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const { loggedUser, logOut, userLoading } = useUser();
@@ -68,21 +68,26 @@ const Navbar = () => {
               </ul>
             </div>
             <Link to="/" className="normal-case ">
-              <h1 className="text-center text-6xl font-bold flex items-end">
+              <h1 className="text-center text-3xl sm:text-6xl font-bold flex items-end">
                 TTH
-                <span className="text-xl   font-semibold">Toy Trover Hub</span>
+                <span className="text-xl hidden sm:block font-semibold">Toy Trover Hub</span>
               </h1>
             </Link>
+          </div>
+
+          <div className="navbar-center w-1/2 flex items-center gap-2 border-b ml-4">
+            <div><AiOutlineSearch className="text-xl text-secondary" /></div>
+            <input type="search" name="search" placeholder="Search"  className="text-secondary text-base bg-transparent w-full focus:outline-none placeholder:text-secondary" />
           </div>
 
           <div className="navbar-end">
             <ul className=" menu menu-horizontal px-1 hidden md:flex text-xl font-semibold">
               {/*{navbarOption}*/}
               <li>
-              <NavLink to="/">Home</NavLink>
+                <NavLink to="/">Home</NavLink>
               </li>
               <li>
-              <NavLink to="/shop">Shop</NavLink>
+                <NavLink to="/shop">Shop</NavLink>
               </li>
             </ul>
 
@@ -104,7 +109,9 @@ const Navbar = () => {
                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                       />
                     </svg>
-                    <span className="badge badge-sm indicator-item">{cartItems?.products?.length}</span>
+                    <span className="badge badge-sm indicator-item">
+                      {cartItems?.products?.length}
+                    </span>
                   </div>
                 </label>
                 {/* cart dropdown */}
@@ -116,7 +123,7 @@ const Navbar = () => {
                       "linear-gradient(to top, #e7fa40 -50%, #e77f5a 100%)",
                   }}
                 >
-                  <CartDropDownContent cartItems={cartItems}/>
+                  <CartDropDownContent cartItems={cartItems} />
                 </div>
               </div>
             )}
@@ -134,7 +141,7 @@ const Navbar = () => {
                   </label>
                   <ul
                     tabIndex={0}
-                    className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shado rounded-box w-52 "
+                    className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-md text-secondary flex flex-col gap-2 !text-2xl rounded-box w-52 "
                     style={{
                       background:
                         "linear-gradient(to top, #e7fa40 -50%, #e77f5a 100%)",
