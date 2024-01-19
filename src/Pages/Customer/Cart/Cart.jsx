@@ -42,6 +42,23 @@ const Cart = () => {
     toast.success("Remove Successfully");
   };
 
+  const handleCheckout = (e) =>{
+    e.preventDefault()
+
+    const form  = e.target
+    const shippingDetails = {
+      name : form.name.value,
+      email : form.email.value,
+      phone : form.phone.value,
+      address: form.address.value,
+      country: form.country.value,
+      city: form.city.value,
+      postal : form.postal.value
+    }
+
+    const order = {...cartItems, shippingDetails}
+  }
+
   return (
     <div className="wrapper min-h-screen pt-32 text-secondary">
       <div className="flex gap-5">
@@ -59,7 +76,7 @@ const Cart = () => {
             </div>
 
             {/* products */}
-            <div className="max-h-[30rem]">
+            <div className="max-h-[30rem] overflow-auto">
               {cartItems.products.length <= 0 ? (
                 <div className="h-[20rem] flex flex-col items-center justify-center">
                   <p className="text-2xl">
@@ -76,7 +93,7 @@ const Cart = () => {
                 </div>
               ) : (
                 cartItems.products.map((product) => (
-                  <div className="grid grid-cols-4 p-2">
+                  <div className="grid grid-cols-4 p-2" key={product._id}>
                     <div className=" flex items-center gap-5 relative">
                       <div>
                         <img
@@ -93,7 +110,7 @@ const Cart = () => {
                       </div>
                       <button
                         onClick={() => handleDelete(product._id)}
-                        className="absolute bg-secondary text-primary p-1 cursor-pointer rounded-full flex items-center justify-center -top-2  shadow-lg -left-3  "
+                        className="absolute bg-secondary text-primary p-1 cursor-pointer rounded-full flex items-center justify-center -top-2  shadow-lg -left-2  "
                       >
                         <AiOutlineClose className="text-primary text-sm" />
                       </button>
@@ -161,7 +178,7 @@ const Cart = () => {
         </div>
         <div className="basis-1/4" >
         <div className="text-4xl font-semibold pb-0" >Shipping details</div>
-          <form action="">
+          <form onSubmit={handleCheckout}>
             {/* Name */}
             <div className="form-control relative my-6 w-full">
               <input
@@ -223,11 +240,11 @@ const Cart = () => {
             <div className="form-control relative my-6">
               <input
                 autoComplete="off"
-                id="name"
-                name="name"
+                id="address"
+                name="address"
                 type="text"
                 className="peer placeholder-transparent h-10 w-full   bg-transparent text-secondary focus:outline-none focus:borer-rose-600 border-b-secondary/50 border-b-2"
-                placeholder="name"
+                placeholder="address"
                 required
               />
               <label
