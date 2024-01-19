@@ -48,9 +48,9 @@ useEffect(()=>{
           (category, index) => (
             <TabPanel key={index}>
               {/* Showing all card */}
-              <div className="grid lg:gap-5 xl:gap-4 mt-4  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="grid gap-2 lg:gap-5 xl:gap-4 mt-4  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {usedToy?.map((toy) => (
-                  <div key={toy._id} >
+                  <div key={toy._id} className="justify-self-center" >
                     <ShopCard toy={toy} />
                   </div>
                 ))}

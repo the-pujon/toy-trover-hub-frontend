@@ -92,8 +92,9 @@ const Shop = () => {
 
   return (
     <div className="wrapper min-h-screen pt-28 pb-10">
-      <div>
-        <div className="flex gap-5 justify-between items-center my-5 px-5">
+      <>
+        <div className="flex gap-5 justify-between items-center my-5 ">
+          {/* filter */}
           <div className="dropdown dropdown-right dropdown-bottom ">
             <label tabIndex={0} className=" text-white p-2 cursor-pointer">
               <AiOutlineMenuUnfold className="text-3xl" />
@@ -117,7 +118,7 @@ const Shop = () => {
                 </li>
                 {category?.map((item, index) => (
                   <li key={index}>
-                    <details close={'true'}>
+                    <details close={"true"}>
                       <summary
                         onClick={() => handleFilter(item.value)}
                         className={`hover:bg-secondary hover:text-primary ${
@@ -131,7 +132,7 @@ const Shop = () => {
                         {item?.subcategory.length !== 0 &&
                           item?.subcategory?.map((s, i) => (
                             <li
-                            key={i}
+                              key={i}
                               className={`rounded-md p-2 cursor-pointer hover:bg-secondary hover:text-primary ${
                                 filterTextActive === s.value &&
                                 "bg-secondary text-primary"
@@ -149,6 +150,7 @@ const Shop = () => {
             </div>
           </div>
 
+          {/* search and sort */}
           <form className="w-full" onSubmit={handleSubmit}>
             <input
               type="search"
@@ -160,6 +162,7 @@ const Shop = () => {
             />
           </form>
 
+          {/* sort */}
           <div className="!w-20">
             <select
               className="px-4 !w-20 overflow-auto py-2 border text-secondary border-secondary bg-transparent rounded-lg focus:outline-none appearance-none"
@@ -176,14 +179,13 @@ const Shop = () => {
                 className="text-primary !w-20 appearance-none"
               >
                 &#8595;&#8595;
-
                 {/*<span className="!hidden sm:block">
                   Price (Lowest to Highest) &#8595;
                 </span>*/}
               </option>
               <option value="price-highest" className="text-primary !w-20">
                 {/*<FaSortAmountUp />*/}
-               &#8593;&#8593;
+                &#8593;&#8593;
                 {/*<span className="hidden sm:block">
                   Price (Highest to Lowest)
                 </span>*/}
@@ -191,14 +193,14 @@ const Shop = () => {
             </select>
           </div>
         </div>
-        <div className="grid wrapper gap-4 grid-cols-1 sm:grid-cols-4">
+        <div className="grid wrapper gap-2 lg:gap-5 xl:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {FilteredToys?.map((toy) => (
-            <div key={toy._id}>
+            <div key={toy._id} className="justify-self-center" >
               <ShopCard toy={toy} />
             </div>
           ))}
         </div>
-      </div>
+      </>
     </div>
   );
 };
