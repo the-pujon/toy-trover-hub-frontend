@@ -34,7 +34,7 @@ const CartDropDownContent = ({ cartItems }) => {
               </div>
               <div className="flex flex-col w-1/3">
                 <span className="text-sm sm:text-base whitespace-nowrap">Quantity: {product.quantity}</span>
-                <span className="text-sm sm:text-base whitespace-nowrap">Price: {product.price}</span>
+                <span className="text-sm sm:text-base whitespace-nowrap">Total: {product.total}</span>
               </div>
             </div>
           ))}

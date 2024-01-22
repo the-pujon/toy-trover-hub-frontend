@@ -11,6 +11,7 @@ import EditToy from "../Pages/Seller/EditToy/EditToy";
 import PrivateRoute from "./PrivateRoute";
 import Shop from "../Pages/Customer/Shop/Shop";
 import Cart from "../Pages/Customer/Cart/Cart";
+import SuccessPayment from "../Pages/Customer/SuccessPayment";
 
 const Routes = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const Routes = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: 'paymentSuccess/:orderId',
+        element: <SuccessPayment/>
+      }
     ],
   },
 ]);

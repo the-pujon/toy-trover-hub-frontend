@@ -24,6 +24,9 @@ const ShopCard = ({ toy }) => {
   const dispatch = useDispatch();
 
   const handleAddCart = (product) => {
+
+    console.log(quantity * product.price)
+
       const cart = {
         _id: product._id,
         name: product.name,

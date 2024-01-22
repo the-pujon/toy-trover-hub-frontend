@@ -23,6 +23,7 @@ const cartSlice = createSlice({
       if (existingItem) {
         // If it exists, update the quantity
         existingItem.quantity += newItem.quantity;
+        existingItem.total += newItem.total;
       } else {
         // If it doesn't exist, add the new item
         state.products.push(newItem);

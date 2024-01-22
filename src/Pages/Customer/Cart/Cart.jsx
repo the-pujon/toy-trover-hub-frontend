@@ -5,10 +5,15 @@ import { removeItemFromCart } from "../../../features/CartSlice";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { MdKeyboardBackspace } from "react-icons/md";
+import { loadStripe } from "@stripe/stripe-js";
+import { useUser } from './../../../Hooks/useUser';
 
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart);
+  const {loggedUser } = useUser()
+
+  console.log(loggedUser?.email)
 
   // Create a state object to track quantity for each product
   const [quantities, setQuantities] = useState({});
@@ -42,8 +47,11 @@ const Cart = () => {
     toast.success("Remove Successfully");
   };
 
-  const handleCheckout = (e) =>{
+  const handleCheckout =async (e) =>{
     e.preventDefault()
+
+    const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+
 
     const form  = e.target
     const shippingDetails = {
@@ -56,7 +64,33 @@ const Cart = () => {
       postal : form.postal.value
     }
 
-    const order = {...cartItems, shippingDetails}
+    const order = {...cartItems, shippingDetails, email: loggedUser?.email}
+
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const response = await fetch(
+      `http://localhost:5000/api/checkout`,
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(order),
+      }
+    );
+
+    const session = await response.json();
+
+    console.log(session)
+
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    console.log(result)
+
+    if (result.error) {
+      console.log(result.error);
+    }
   }
 
   return (
