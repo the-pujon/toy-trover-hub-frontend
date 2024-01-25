@@ -15,7 +15,7 @@ const Home = () => {
       <Banner />
       <About />
 
-      <div className="wrapper">
+      <div className="wrapper h-screen">
         <div class="three text-6xl font-semibold mb-14">
           <h1>Check Our Gallery</h1>
         </div>
