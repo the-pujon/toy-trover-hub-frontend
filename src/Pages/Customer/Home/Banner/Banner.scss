@@ -5,10 +5,8 @@
     overflow: hidden;
     background-repeat: no-repeat;
     text-align: left;
-}
 
 
-.responsive-banner {
     .mySwiper {
         .swiper-wrapper {
             .swiper-slide {
@@ -19,7 +17,6 @@
         }
     }
 }
-
 
 .banner-text-stroke {
     -webkit-text-stroke: 1px white;
@@ -48,26 +45,23 @@
 .circle-c {
     fill: rgba(0, 0, 0, 0.1);
     position: absolute;
-    top: 120px;
-    right: -200px;
-    //left: 50%;
+    top: 400px;
+    left: 400px;
 }
 
-.cirle-d {
+.circle-d {
     fill: rgba(0, 0, 0, 0.1);
     position: absolute;
     top: 195px;
-    right: 145px;
+    left: 145px;
 }
 
 .banner {
-    @media screen and (max-width: 767px) {
-        background-image: url(../../../../assets/about.jpg);
+    @media screen and (max-width: 1023px) {
+        background-image: linear-gradient(to right, rgba(0,0,0, 0.3) 0 100%),url(../../../../assets/about.jpg);
         background-size: cover;
         background-repeat: no-repeat;
         padding: 2rem 0;
-        z-index: -999;
-
     }
 
 }

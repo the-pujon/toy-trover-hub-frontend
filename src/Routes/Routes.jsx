@@ -12,6 +12,8 @@ import PrivateRoute from "./PrivateRoute";
 import Shop from "../Pages/Customer/Shop/Shop";
 import Cart from "../Pages/Customer/Cart/Cart";
 import SuccessPayment from "../Pages/Customer/SuccessPayment";
+import DashboardLayout from "../Layouts/DashboardLayout";
+import Dashboard from "../Pages/AdminDashBoard/Dashboard/Dashboard";
 
 const Routes = createBrowserRouter([
   {
@@ -81,6 +83,16 @@ const Routes = createBrowserRouter([
       }
     ],
   },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout/>,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard/>
+      }
+    ]
+  }
 ]);
 
 export default Routes;
