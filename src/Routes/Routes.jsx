@@ -57,10 +57,7 @@ const Routes = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "/allToys",
-        element: <AllToys />,
-      },
+
       {
         path: "myToys",
         element: (
@@ -87,10 +84,14 @@ const Routes = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardLayout/>,
     children: [
+      //{
+      //  path: "/",
+      //  element: <Dashboard/>
+      //},
       {
-        path: "/dashboard",
-        element: <Dashboard/>
-      }
+        path: "allToys",
+        element: <AllToys />,
+      },
     ]
   }
 ]);

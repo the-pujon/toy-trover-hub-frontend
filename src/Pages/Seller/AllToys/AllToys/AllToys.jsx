@@ -82,7 +82,7 @@ const AllToys = () => {
               <input
                 type="text"
                 placeholder="Search toys..."
-                class="px-4 py-2 border border-secondary text-secondary bg-transparent rounded-lg focus:outline-none "
+                class="px-4 py-2 border border-secondary text-secondary bg-transparent rounded-lg focus:outline-none placeholder:text-secondary"
                 onchange="{handleSearch}"
                 onChange={handleChange}
                 onSubmit={handleSubmit}
