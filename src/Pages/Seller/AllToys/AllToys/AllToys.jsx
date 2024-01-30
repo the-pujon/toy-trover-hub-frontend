@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import AddToy from "./../../AddToy/AddToy";
 
 const AllToys = () => {
   const [toys, setAllToys] = useState([]);
@@ -77,12 +78,14 @@ const AllToys = () => {
     <div>
       <div className="wrapper min-h-screen text-secondary backdrop-blur-md">
         <div className="overflow-x-auto pt-[8rem]">
+          <div className="text-4xl font-thin">All Products</div>
           <div class="flex items-center justify-between mb-4">
             <div class="flex items-center space-x-4 text-primary">
               <input
                 type="text"
                 placeholder="Search toys..."
-                class="px-4 py-2 border border-secondary text-secondary bg-transparent rounded-lg focus:outline-none placeholder:text-secondary"
+                //class="px-4 py-2 border border-secondary text-secondary bg-transparent rounded-lg focus:outline-none placeholder:text-secondary"
+                className="toyBorder focus:outline-none placeholder:text-secondary"
                 onchange="{handleSearch}"
                 onChange={handleChange}
                 onSubmit={handleSubmit}
@@ -90,7 +93,8 @@ const AllToys = () => {
               <select
                 onChange={handleCategory}
                 //defaultValue="All Categories"
-                class="px-4 py-2 border border-secondary bg-transparent text-secondary rounded-lg focus:outline-none "
+                //class="px-4 py-2 border border-secondary bg-transparent text-secondary rounded-lg focus:outline-none "
+                className="toyBorder"
               >
                 <option>All Categories</option>
                 {category.map((c) => (
@@ -100,22 +104,50 @@ const AllToys = () => {
                 ))}
               </select>
             </div>
-            <select
-              class="px-4 py-2 border border-secondary bg-transparent rounded-lg focus:outline-none "
-              //  value="{sortOption}"
-              onChange={handleSort}
-            >
-              <option value="" className="bg-primary">
-                Sort By
-              </option>
+            <div className="flex gap-4">
+              <button
+                className="toyButton"
+                onClick={() =>
+                  document.getElementById("addProduct").showModal()
+                }
+              >
+                Add Product
+              </button>
+              <dialog
+                id="addProduct"
+                className="modal modal-bottom sm:modal-middle"
+              >
+                <div className="modal-box  w-11/12 min-w-[80rem] max-w-7xl backdrop-blur-md">
+                  <form method="dialog">
+                    {/* if there is a button in form, it will close the modal */}
+                    <button className=" absolute text-3xl font-thin right-2 top-2">
+                      ✕
+                    </button>
+                  </form>
+                  <AddToy />
+                </div>
+                <form method="dialog" className="modal-backdrop">
+                  <button>close</button>
+                </form>
+              </dialog>
 
-              <option value="price-lowest" className="bg-primary">
-                Price (Lowest to Highest)
-              </option>
-              <option value="price-highest" className="bg-primary">
-                Price (Highest to Lowest)
-              </option>
-            </select>
+              <select
+                class="toyBorder"
+                //  value="{sortOption}"
+                onChange={handleSort}
+              >
+                <option value="" className="bg-primary">
+                  Sort By
+                </option>
+
+                <option value="price-lowest" className="bg-primary">
+                  Price (Lowest to Highest)
+                </option>
+                <option value="price-highest" className="bg-primary">
+                  Price (Highest to Lowest)
+                </option>
+              </select>
+            </div>
           </div>
 
           <table className="table">

@@ -171,6 +171,7 @@
     -webkit-transform: translateY(0%);
   }
 }
+/*px-4 py-2 border border-secondary bg-transparent rounded-lg focus:outline-none */
 
 .toyButton {
   padding: 1rem;
@@ -191,4 +192,20 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: inset 0px -80px 0px rgba(255, 255, 255, 0.1);
   transform: translateY(-5px);
+}
+
+.toyBorder {
+  padding: 1rem;
+
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-top: 32px;
+  cursor: pointer;
+  box-shadow: inset 0px 0px 0px rgba(255, 255, 255, 0.2);
+  transition: all 0.4s ease;
 }

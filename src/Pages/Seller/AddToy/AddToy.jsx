@@ -87,7 +87,7 @@ const AddToy = () => {
       description: form.description.value,
       price: form.price.value,
     };
-    console.log(data)
+    console.log(data);
 
     fetch("http://localhost:5000/api/toys", {
       method: "POST",
@@ -102,15 +102,15 @@ const AddToy = () => {
   return (
     <div className="">
       <div className="wrapper">
-        <div className="flex items-center justify-center h-screen">
+        <div className="flex items-center justify-center  flex-row-reverse">
           <div className="flex-1">
             <PreviewImages PreviewImages={prvImg} />
           </div>
-          <div className="flex-1 p-[1rem_1.5rem] backdrop-blur-sm shadow-2xl rounded-2xl bg-primary/30">
-            <h1 className="text-secondary text-4xl font-semibold text-center">
+          <div className="flex-1 p-[1rem_1.5rem] backdrop-blur-sm   rounded-2xl ">
+            <h1 className="text-secondary text-4xl font-thin mb-4 text-center">
               Add a toy
             </h1>
-            <form action="" onSubmit={handleImageUpload}>
+            <form action="" onSubmit={handleImageUpload} id="productAdd">
               {/* name */}
               <div className="form-control relative my-6">
                 <input
@@ -124,7 +124,7 @@ const AddToy = () => {
                 />
                 <label
                   htmlFor="name"
-                  className="absolute left-0 -top-3.5 text-gray-200 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-200 peer-focus:text-sm"
+                  className="absolute left-0 -top-3.5 text-secondary text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-secondary peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-200 peer-focus:text-sm"
                 >
                   Name
                 </label>
@@ -150,7 +150,7 @@ const AddToy = () => {
                   />
                   <label
                     htmlFor="sellerName"
-                    className="absolute left-0 -top-3.5 text-gray-200 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-200 peer-focus:text-sm"
+                    className="absolute left-0 -top-3.5 text-secondary text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-secondary peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-200 peer-focus:text-sm"
                   >
                     Seller Name
                   </label>
@@ -171,7 +171,7 @@ const AddToy = () => {
                 />
                 <label
                   htmlFor="sellerEmail"
-                  className="absolute left-0 -top-3.5 text-gray-200 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-200 peer-focus:text-sm"
+                  className="absolute left-0 -top-3.5 text-secondary text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-secondary peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-200 peer-focus:text-sm"
                 >
                   Seller Email
                 </label>
@@ -179,14 +179,14 @@ const AddToy = () => {
 
               {/* toyImage */}
               <div className="form-control relative my-6 ">
-                <label htmlFor="email" className="text-secondary/50">
+                <label htmlFor="email" className="text-secondary">
                   Upload Toy Image
                 </label>
                 <input
                   accept="image/*"
                   onChange={handleImageChange}
                   type="file"
-                  className="file-input file-input-ghost w-full file:border-r-2 file:border-r-secondary/50   border-t-0 border-l-0 border-r-0 rounded-none border-b-2 text-gray-400 text-sm border-b-secondary/50"
+                  className="file-input file-input-ghost w-full file:border-r-2 file:border-r-secondary/50   border-t-0 border-l-0 border-r-0 rounded-none border-b-2 text-secondary text-sm border-b-secondary/50"
                 />
               </div>
               {/* description */}
@@ -202,7 +202,7 @@ const AddToy = () => {
                 />
                 <label
                   htmlFor="description"
-                  className="absolute left-0 -top-3.5 text-gray-200 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-200 peer-focus:text-sm"
+                  className="absolute left-0 -top-3.5 text-secondary text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-secondary peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-200 peer-focus:text-sm"
                 >
                   Toy Description
                 </label>
@@ -213,7 +213,7 @@ const AddToy = () => {
                   <select
                     onChange={handleCategory}
                     id="category"
-                    className="select select-ghost w-full max-w-xs border-t-0 border-l-0 border-r-0 rounded-none border-b-2 text-gray-400 text-sm border-b-secondary/50 outline-none appearance-none"
+                    className="select select-ghost w-full max-w-xs border-t-0 border-l-0 border-r-0 rounded-none border-b-2 text-secondary text-sm border-b-secondary/50 outline-none appearance-none"
                   >
                     <option disabled selected>
                       Category
@@ -233,7 +233,7 @@ const AddToy = () => {
                 <div className="form-control relative my-6 w-full">
                   <select
                     id="subcategory"
-                    className="select select-ghost w-full max-w-xs border-t-0 border-l-0 border-r-0 rounded-none border-b-2 text-gray-400 text-sm border-b-secondary/50 outline-none appearance-none"
+                    className="select select-ghost w-full max-w-xs border-t-0 border-l-0 border-r-0 rounded-none border-b-2 text-secondary text-sm border-b-secondary/50 outline-none appearance-none"
                   >
                     <option disabled selected>
                       Subcategory
@@ -252,7 +252,7 @@ const AddToy = () => {
               </div>
 
               <div className="flex items-center gap-2">
-                {" "}
+                {/* price */}
                 <div className="form-control relative my-6 w-full">
                   <input
                     autoComplete="off"
@@ -265,21 +265,21 @@ const AddToy = () => {
                   />
                   <label
                     htmlFor="price"
-                    className="absolute left-0 -top-3.5 text-gray-200 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-200 peer-focus:text-sm"
+                    className="absolute left-0 -top-3.5 text-secondary text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-secondary peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-200 peer-focus:text-sm"
                   >
                     Price
                   </label>
                 </div>
                 {/* inStock */}
                 <div className="form-control relative my-6 w-full">
-                  <label htmlFor="email" className="text-secondary/50">
+                  <label htmlFor="email" className="text-secondary">
                     In Stock
                   </label>
                   <div className="flex items-center">
                     {" "}
                     <div className="form-control">
                       <label className="label cursor-pointer">
-                        <span className="label-text text-secondary/50 mr-2">
+                        <span className="label-text text-secondary mr-2">
                           Yes
                         </span>
                         <input
@@ -293,7 +293,7 @@ const AddToy = () => {
                     </div>
                     <div className="form-control">
                       <label className="label cursor-pointer">
-                        <span className="label-text text-secondary/50 mr-2">
+                        <span className="label-text text-secondary mr-2">
                           No
                         </span>
                         <input
@@ -306,7 +306,7 @@ const AddToy = () => {
                     </div>
                     <div className="form-control">
                       <label className="label cursor-pointer">
-                        <span className="label-text text-secondary/50 mr-2">
+                        <span className="label-text text-secondary mr-2">
                           TBA
                         </span>
                         <input
@@ -320,11 +320,21 @@ const AddToy = () => {
                   </div>
                 </div>
               </div>
-
-              <button disabled={disableButton} className="toyButton -mt-10">
-                Submit
-              </button>
             </form>
+            <button
+              form="productAdd"
+              type="submit"
+              disabled={disableButton}
+              className="toyButton -mt-10"
+            >
+              Submit
+            </button>
+            <button
+              onClick={() => document.getElementById("addProduct").close()}
+              className="ml-2 toyButton"
+            >
+              Cancel
+            </button>
           </div>
         </div>
       </div>
