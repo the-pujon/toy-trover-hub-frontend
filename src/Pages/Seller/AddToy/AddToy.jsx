@@ -3,6 +3,7 @@ import PreviewImages from "../../../Components/PreviewImages/PreviewImages";
 import { useUser } from "../../../Hooks/useUser";
 import { useNavigate } from "react-router-dom";
 import MyToys from "./../MyToys/MyToys";
+import useApi from './../../../Hooks/useApi';
 
 const AddToy = () => {
   const { loggedUser } = useUser();
@@ -13,6 +14,8 @@ const AddToy = () => {
   const [disableButton, setDisableButton] = useState(false);
   const [category, setCategory] = useState([]);
   const [subcategory, setSubcategory] = useState([]);
+
+  const {post} = useApi()
 
   useEffect(() => {
     fetch("/category.json")
@@ -89,13 +92,11 @@ const AddToy = () => {
     };
     console.log(data);
 
-    fetch("http://localhost:5000/api/toys", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => navigate(`/MyToys`))
+    post("toys", data, "addProduct")
+      .then((data) => {
+        //navigate(`/MyToys`)
+        document.getElementById("addProduct").close()
+      })
       .catch((err) => console.error(err));
   };
 
@@ -106,9 +107,9 @@ const AddToy = () => {
           <div className="flex-1">
             <PreviewImages PreviewImages={prvImg} />
           </div>
-          <div className="flex-1 p-[1rem_1.5rem] backdrop-blur-sm   rounded-2xl ">
+          <div className="flex-1 p-[1rem_1.5rem]  rounded-2xl ">
             <h1 className="text-secondary text-4xl font-thin mb-4 text-center">
-              Add a toy
+              Add Product
             </h1>
             <form action="" onSubmit={handleImageUpload} id="productAdd">
               {/* name */}

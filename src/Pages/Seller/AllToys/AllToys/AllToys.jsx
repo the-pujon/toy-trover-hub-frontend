@@ -115,12 +115,11 @@ const AllToys = () => {
               </button>
               <dialog
                 id="addProduct"
-                className="modal modal-bottom sm:modal-middle"
+                className="modal modal-bottom sm:modal-middle bg-primary/20"
               >
-                <div className="modal-box  w-11/12 min-w-[80rem] max-w-7xl backdrop-blur-md">
+                <div className="modal-box  w-11/12 min-w-[80rem] max-w-7xl border border-dotted border-secondary/30 backdrop-blur-md bg-secondary/10">
                   <form method="dialog">
-                    {/* if there is a button in form, it will close the modal */}
-                    <button className=" absolute text-3xl font-thin right-2 top-2">
+                    <button className="focus:outline-none hover:outline-none absolute text-3xl font-thin right-2 top-2">
                       ✕
                     </button>
                   </form>
