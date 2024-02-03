@@ -31,8 +31,11 @@ const AllToys = () => {
   useEffect(() => {
     let value = search.toLowerCase();
     let toySearch = toys.filter((data) => {
-      const name = data.name.toLowerCase();
-      return name.startsWith(value);
+      console.log(data);
+      if (data?.name) {
+        const name = data?.name?.toLowerCase();
+        return name.startsWith(value);
+      }
     });
     setFilteredToys(toySearch);
   }, [search]);
@@ -64,12 +67,12 @@ const AllToys = () => {
 
   const handleSort = (e) => {
     if (e.target.value === "price-lowest") {
-      const s = [...filteredToys].sort((a, b) => a.price - b.price);
-      setFilteredToys(s);
+      const s = [...toys].sort((a, b) => a.price - b.price);
+      settoys(s);
     }
 
     if (e.target.value === "price-highest") {
-      const s = [...filteredToys].sort((b, a) => a.price - b.price);
+      const s = [...toys].sort((b, a) => a.price - b.price);
       setFilteredToys(s);
     }
   };

@@ -14,6 +14,7 @@ import Cart from "../Pages/Customer/Cart/Cart";
 import SuccessPayment from "../Pages/Customer/SuccessPayment";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Dashboard from "../Pages/AdminDashBoard/Dashboard/Dashboard";
+import AllOrders from "../Pages/AdminDashBoard/AllOrders/AllOrders";
 
 const Routes = createBrowserRouter([
   {
@@ -92,6 +93,10 @@ const Routes = createBrowserRouter([
         path: "allToys",
         element: <AllToys />,
       },
+      {
+        path: 'allOrders',
+        element: <AllOrders/>
+      }
     ]
   }
 ]);
