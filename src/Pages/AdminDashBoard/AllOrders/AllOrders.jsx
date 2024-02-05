@@ -11,7 +11,7 @@ const AllOrders = () => {
 
   useEffect(() => {
     get("orders", "getOrders").then((data) => {
-      setFilterOrders(data);
+      setOrders(data);
       setFilterOrders(data);
     });
     setRefresh(false);
@@ -19,17 +19,12 @@ const AllOrders = () => {
 
   //for search
   const handleChange = (e) => {
-    console.log(e.target.value);
     setSearch(e.target.value);
   };
 
   //for search
   useEffect(() => {
     let value = search.toLowerCase();
-
-    if (value === "") {
-      return setFilterOrders(orders);
-    }
 
     let searchOrders = orders.filter((data) => {
       const email = data?.userEmail?.toLowerCase();
@@ -62,7 +57,7 @@ const AllOrders = () => {
     setFilterOrders(searchOrders);
   };
 
-  //for search
+  //for sorting
   const handleSort = (e) => {
     if (e.target.value === "price-lowest") {
       const s = [...orders].sort((a, b) => a.totalAmount - b.totalAmount);
@@ -75,7 +70,7 @@ const AllOrders = () => {
     }
   };
 
-  //for handling search
+  //for update
   const handleStatus = (id, name) => {
     put(`orders/${id}`, { status: name }, "updateOrderStatus").then((data) => {
       setRefresh(true);
