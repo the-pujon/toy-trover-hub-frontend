@@ -16,6 +16,7 @@ import DashboardLayout from "../Layouts/DashboardLayout";
 import Dashboard from "../Pages/AdminDashBoard/Dashboard/Dashboard";
 import AllOrders from "../Pages/AdminDashBoard/AllOrders/AllOrders";
 import ManageCustomers from "../Pages/AdminDashBoard/ManageCustomers/ManageCustomers";
+import AllTransactions from "../Pages/AdminDashBoard/AllTransactions/AllTransactions";
 
 const Routes = createBrowserRouter([
   {
@@ -101,6 +102,10 @@ const Routes = createBrowserRouter([
       {
         path: 'customers',
         element: <ManageCustomers/>
+      },
+      {
+        path: 'transactions',
+        element: <AllTransactions/>
       }
     ]
   }

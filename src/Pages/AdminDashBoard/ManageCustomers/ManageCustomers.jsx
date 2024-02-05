@@ -96,6 +96,7 @@ const ManageCustomers = () => {
   //for search
   const handleSubmit = (e) => {
     e.preventDefault();
+    let value = search.toLowerCase();
     let searchCustomers = customers.filter((data) => {
       const email = data?.userData.email?.toLowerCase();
       const name = data?.userData.name?.toLowerCase();

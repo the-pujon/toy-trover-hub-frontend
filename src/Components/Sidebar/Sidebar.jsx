@@ -103,18 +103,18 @@ const Sidebar = () => {
           </li>
           <li>
             <Link
-              to="/dashboard"
+              to="/dashboard/transactions"
               className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-secondary"
             >
               <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-secondary">
                 <MdPayment />
               </span>
-              <span className="text-base font-medium">All Payments</span>
+              <span className="text-base font-medium">All Transactions</span>
             </Link>
           </li>
           <li>
             <Link
-              to="/dashboard"
+              to="/shop"
               className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-secondary"
             >
               <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-secondary">
