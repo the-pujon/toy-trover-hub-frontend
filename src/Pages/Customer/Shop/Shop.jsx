@@ -35,8 +35,8 @@ const Shop = () => {
   useEffect(() => {
     let value = search.toLowerCase();
     let toySearch = allToys.filter((data) => {
-      const name = data.name.toLowerCase();
-      return name.startsWith(value);
+      const name = data?.name.toLowerCase();
+      return name?.startsWith(value);
     });
     setFilteredToys(toySearch);
   }, [search]);
@@ -75,9 +75,12 @@ const Shop = () => {
     setFilterTextActive(value);
 
     if (value === "all") {
+      console.log("first")
       setFilteredToys(allToys);
     } else {
+      console.log("here")
       let afterFilter = allToys.filter((data) => {
+        console.log(data)
         const filterByCategory = data.category.toLowerCase();
         const filterBySubCategory = data.subcategory.toLowerCase();
         return (
@@ -165,7 +168,7 @@ const Shop = () => {
           {/* sort */}
           <div className="!w-20">
             <select
-              className="px-4 !w-20 overflow-auto py-2 border text-secondary border-secondary bg-transparent rounded-lg focus:outline-none appearance-none"
+              className="px-4 !w-20 overflow-auto py-2 border text-secondary border-secondary bg-transparent rounded-none focus:outline-none appearance-none"
               //  value="{sortOption}"
               onChange={handleSort}
               style={{ width: "1rem" }}

@@ -13,10 +13,10 @@ import Shop from "../Pages/Customer/Shop/Shop";
 import Cart from "../Pages/Customer/Cart/Cart";
 import SuccessPayment from "../Pages/Customer/SuccessPayment";
 import DashboardLayout from "../Layouts/DashboardLayout";
-import Dashboard from "../Pages/AdminDashBoard/Dashboard/Dashboard";
 import AllOrders from "../Pages/AdminDashBoard/AllOrders/AllOrders";
 import ManageCustomers from "../Pages/AdminDashBoard/ManageCustomers/ManageCustomers";
 import AllTransactions from "../Pages/AdminDashBoard/AllTransactions/AllTransactions";
+import Dashboard from './../Pages/AdminDashBoard/Dashboard/Dashboard';
 
 const Routes = createBrowserRouter([
   {
@@ -87,10 +87,10 @@ const Routes = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardLayout/>,
     children: [
-      //{
-      //  path: "/",
-      //  element: <Dashboard/>
-      //},
+      {
+        path: "",
+        element: <Dashboard/>
+      },
       {
         path: "allToys",
         element: <AllToys />,

@@ -79,7 +79,7 @@ const Sidebar = () => {
               <span className="text-base font-medium">Customers</span>
             </Link>
           </li>
-          <li>
+          {/*<li>
             <Link
               to="/dashboard"
               className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-secondary"
@@ -89,8 +89,8 @@ const Sidebar = () => {
               </span>
               <span className="text-base font-medium">Shipping</span>
             </Link>
-          </li>
-          <li>
+          </li>*/}
+          {/*<li>
             <Link
               to="/dashboard"
               className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-secondary"
@@ -100,7 +100,7 @@ const Sidebar = () => {
               </span>
               <span className="text-base font-medium">Category</span>
             </Link>
-          </li>
+          </li>*/}
           <li>
             <Link
               to="/dashboard/transactions"

@@ -1,0 +1,21 @@
+.dashboardCard {
+    padding: 1rem;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    width: 100%;
+
+    //text-transform: uppercase;
+    //letter-spacing: 2px;
+    font-weight: 600;
+    margin-top: 32px;
+    cursor: pointer;
+    box-shadow: inset 0px 0px 0px rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+  }
+  .dashboardCard:hover {
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0px -200px 0px rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+  }

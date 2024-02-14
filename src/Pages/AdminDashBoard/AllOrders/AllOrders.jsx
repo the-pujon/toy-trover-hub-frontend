@@ -11,6 +11,7 @@ const AllOrders = () => {
 
   useEffect(() => {
     get("orders", "getOrders").then((data) => {
+      console.log(data)
       setOrders(data);
       setFilterOrders(data);
     });
