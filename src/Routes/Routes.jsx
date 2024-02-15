@@ -88,7 +88,7 @@ const Routes = createBrowserRouter([
     element: <DashboardLayout/>,
     children: [
       {
-        path: "",
+        path: "overview",
         element: <Dashboard/>
       },
       {

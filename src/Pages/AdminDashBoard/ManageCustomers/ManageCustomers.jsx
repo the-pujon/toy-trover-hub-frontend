@@ -7,7 +7,7 @@ const ManageCustomers = () => {
   const [filterCustomers, setFilterCustomers] = useState([]);
   const [search, setSearch] = useState("");
   const [refresh, setRefresh] = useState(false);
-  const { get, put, del } = useApi();
+  const { get, del } = useApi();
 
   useEffect(() => {
     const getUsers = () => {

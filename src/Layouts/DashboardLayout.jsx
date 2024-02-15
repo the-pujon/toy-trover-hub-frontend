@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 const DashboardLayout = () => {
   return (
     <div className="flex flex-row">
-      <div className="w-56 min-h-screen max-h-screen overflow-auto sticky">
+      <div className="w-16 md:w-56 min-h-screen max-h-screen overflow-auto sticky">
         <Sidebar />
       </div>
       <div className="flex-1 w-full max-h-screen overflow-auto sticky">

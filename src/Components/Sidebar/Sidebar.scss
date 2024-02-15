@@ -1,0 +1,16 @@
+.sidebar {
+
+    .active {
+        background: transparent;
+        outline: none;
+        transform: translateX(0.5rem);
+
+
+        &::before {
+            background: transparent;
+
+
+        }
+    }
+
+}

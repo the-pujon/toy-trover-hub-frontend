@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AddToy from "./../../AddToy/AddToy";
 import { MdClose } from "react-icons/md";
 import useApi from "../../../../Hooks/useApi";
+import {Link} from "react-router-dom";
 
 const AllToys = () => {
   const [toys, setAllToys] = useState([]);
@@ -164,9 +165,9 @@ const AllToys = () => {
             <tbody>
               {filteredToys?.map((toy) => (
                 <tr key={toy._id}>
-                  {/* toy image */}
+                  {/* product image and name */}
                   <td>
-                    <div className="flex items-center space-x-3">
+                    <Link to={`/toys/${toy._id}`} className="flex items-center space-x-3">
                       <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
                           <img
@@ -177,7 +178,7 @@ const AllToys = () => {
                       </div>
 
                       <div className="font-bold">{toy.name}</div>
-                    </div>
+                    </Link>
                   </td>
 
                   {/*  seller name and category */}
