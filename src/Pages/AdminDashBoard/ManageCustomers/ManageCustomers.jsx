@@ -9,6 +9,7 @@ const ManageCustomers = () => {
   const [refresh, setRefresh] = useState(false);
   const { get, del } = useApi();
 
+  //getting all customers with their total orders
   useEffect(() => {
     const getUsers = () => {
       get("users")
@@ -71,7 +72,6 @@ const ManageCustomers = () => {
 
     getUsers();
     setRefresh(false);
-
   }, [refresh]);
 
   //for search
@@ -133,13 +133,16 @@ const ManageCustomers = () => {
     });
   };
 
-  //console.log(customers);
   return (
     <div>
       <div className="wrapper min-h-screen text-secondary backdrop-blur-md">
-        <div className="overflow-x-auto pt-[8rem]">
+        <div className="overflow-x-auto pt-12 md:pt-[8rem]">
+          {/* Title */}
           <div className="text-4xl font-thin">All Customers</div>
-          <div className="flex items-center justify-between mb-4">
+
+          {/* filters */}
+          <div className="flex items-center justify-between mb-4 gap-4">
+            {/* search */}
             <div className="flex items-center space-x-4 text-primary cursor-text">
               <input
                 type="text"
@@ -149,6 +152,8 @@ const ManageCustomers = () => {
                 onSubmit={handleSubmit}
               />
             </div>
+
+            {/* sorting options */}
             <div className="flex gap-4">
               <select
                 className="toyBorder"
@@ -169,6 +174,7 @@ const ManageCustomers = () => {
             </div>
           </div>
 
+          {/* table */}
           <table className="table">
             {/* head */}
             <thead>
@@ -179,8 +185,6 @@ const ManageCustomers = () => {
                 <th>Total Spent (Paid + Unpaid)</th>
                 <th>Total Paid</th>
                 <th>Total Unpaid</th>
-                {/*<th>Payment Status</th>
-                <th>Status</th>*/}
                 <th>Action</th>
               </tr>
             </thead>
