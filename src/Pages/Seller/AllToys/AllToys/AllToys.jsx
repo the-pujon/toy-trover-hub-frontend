@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AddToy from "./../../AddToy/AddToy";
 import { MdClose } from "react-icons/md";
 import useApi from "../../../../Hooks/useApi";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AllToys = () => {
   const [toys, setAllToys] = useState([]);
@@ -90,35 +90,49 @@ const AllToys = () => {
   return (
     <div>
       <div className="wrapper min-h-screen text-secondary backdrop-blur-md">
-        <div className="overflow-x-auto pt-[8rem]">
+        <div className="overflow-x-auto pt-12 md:pt-[8rem]">
+          {/* title */}
           <div className="text-4xl font-thin">All Products</div>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center space-x-4 text-primary">
+
+          {/* filters section */}
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4 w-full">
+            <div className="flex items-center space-x-4 text-primary  ">
+              {/* search */}
               <input
                 type="text"
                 placeholder="Search toys..."
-                className="toyBorder focus:outline-none placeholder:text-secondary"
+                className="toyBorder focus:outline-none placeholder:text-secondary  "
                 onChange={handleChange}
                 onSubmit={handleSubmit}
               />
-              <select onChange={handleCategory} className="toyBorder">
-                <option defaultValue='All Categories'>All Categories</option>
-                {category.map((c,i) => (
-                  <option key={i} value={c.value} className="bg-primary text-secondary">
+
+              {/* filter with category */}
+              <select onChange={handleCategory} className="toyBorder ">
+                <option defaultValue="All Categories">All Categories</option>
+                {category.map((c, i) => (
+                  <option
+                    key={i}
+                    value={c.value}
+                    className="bg-primary text-secondary"
+                  >
                     {c.name}
                   </option>
                 ))}
               </select>
             </div>
+
             <div className="flex gap-4">
+              {/* add product button */}
               <button
-                className="toyButton"
+                className="toyButton "
                 onClick={() =>
                   document.getElementById("addProduct").showModal()
                 }
               >
                 Add Product
               </button>
+
+              {/* Modal */}
               <dialog
                 id="addProduct"
                 className="modal modal-bottom sm:modal-middle bg-primary/20"
@@ -136,7 +150,8 @@ const AllToys = () => {
                 </form>
               </dialog>
 
-              <select className="toyBorder" onChange={handleSort}>
+              {/* sorting option */}
+              <select className="toyBorder " onChange={handleSort}>
                 <option value="" className="bg-primary">
                   Sort By
                 </option>
@@ -151,7 +166,8 @@ const AllToys = () => {
             </div>
           </div>
 
-          <table className="table">
+          {/* table */}
+          <table className="table w-full overflow-auto">
             {/* head */}
             <thead>
               <tr>
@@ -167,7 +183,10 @@ const AllToys = () => {
                 <tr key={toy._id}>
                   {/* product image and name */}
                   <td>
-                    <Link to={`/toys/${toy._id}`} className="flex items-center space-x-3">
+                    <Link
+                      to={`/toys/${toy._id}`}
+                      className="flex items-center space-x-3"
+                    >
                       <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
                           <img
