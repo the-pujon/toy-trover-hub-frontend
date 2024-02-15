@@ -11,7 +11,6 @@ const AllOrders = () => {
 
   useEffect(() => {
     get("orders", "getOrders").then((data) => {
-      console.log(data)
       setOrders(data);
       setFilterOrders(data);
     });
@@ -45,6 +44,8 @@ const AllOrders = () => {
     e.preventDefault();
 
     let value = search.toLowerCase();
+
+    //filter search results
     let searchOrders = orders.filter((data) => {
       const email = data?.userEmail?.toLowerCase();
       const id = data?.userId?.toLowerCase();
@@ -82,9 +83,13 @@ const AllOrders = () => {
   return (
     <div>
       <div className="wrapper min-h-screen text-secondary backdrop-blur-md">
-        <div className="overflow-x-auto pt-[8rem]">
-          <div className="text-4xl font-thin">All Products</div>
-          <div className="flex items-center justify-between mb-4">
+        <div className="overflow-x-auto pt-12 md:pt-[8rem]">
+          {/* title */}
+          <div className="text-4xl font-thin">All Orders</div>
+
+          {/* filters */}
+          <div className="flex items-center justify-between gap-2 mb-4">
+            {/* search */}
             <div className="flex items-center space-x-4 text-primary cursor-text">
               <input
                 type="text"
@@ -94,6 +99,8 @@ const AllOrders = () => {
                 onSubmit={handleSubmit}
               />
             </div>
+
+            {/* sorting options */}
             <div className="flex gap-4">
               <select
                 className="toyBorder"
@@ -114,6 +121,7 @@ const AllOrders = () => {
             </div>
           </div>
 
+          {/* table */}
           <table className="table">
             {/* head */}
             <thead>

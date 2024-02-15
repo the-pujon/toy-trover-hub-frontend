@@ -61,8 +61,7 @@ const AllToys = () => {
   const handleCategory = (e) => {
     e.preventDefault();
     //console.log(e.target.value);
-    fetch(`http://localhost:5000/api/toys?category=${e.target.value}`)
-      .then((res) => res.json())
+    get(`toys?category=${e.target.value}`)
       .then((data) => {
         setAllToys(data);
         setFilteredToys(data);
