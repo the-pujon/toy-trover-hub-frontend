@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import useApi from "../../../Hooks/useApi";
+import { MdClose } from "react-icons/md";
 
 const ManageCustomers = () => {
   const [customers, setCustomers] = useState([]);
   const [filterCustomers, setFilterCustomers] = useState([]);
   const [search, setSearch] = useState("");
   const [refresh, setRefresh] = useState(false);
-  const { get, put } = useApi();
+  const { get, put, del } = useApi();
 
   useEffect(() => {
     const getUsers = () => {
@@ -69,7 +70,9 @@ const ManageCustomers = () => {
     };
 
     getUsers();
-  }, []);
+    setRefresh(false);
+
+  }, [refresh]);
 
   //for search
   const handleChange = (e) => {
@@ -123,6 +126,13 @@ const ManageCustomers = () => {
     }
   };
 
+  //for delete user
+  const handleDelete = (id) => {
+    del(`users/${id}`, "CategoryDelete").then(() => {
+      setRefresh(true);
+    });
+  };
+
   //console.log(customers);
   return (
     <div>
@@ -171,7 +181,7 @@ const ManageCustomers = () => {
                 <th>Total Unpaid</th>
                 {/*<th>Payment Status</th>
                 <th>Status</th>*/}
-                {/*<th>Action</th>*/}
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -183,6 +193,14 @@ const ManageCustomers = () => {
                   <td>{customer.totalSpent}</td>
                   <td>{customer.totalPaid}</td>
                   <td>{customer.totalUnpaid}</td>
+                  <td>
+                    <button
+                      className="cursor-pointer text-3xl"
+                      onClick={() => handleDelete(customer.userData._id)}
+                    >
+                      <MdClose />
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

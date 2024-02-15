@@ -70,17 +70,13 @@ const Shop = () => {
   //TODO: All toys must have categorySlug and subCategorySlug
   //TODO: change all categoryName and subCategoryName into categorySlug and subCategorySlug
   const handleFilter = (value) => {
-    console.log(value);
     //let value = search.toLowerCase();
     setFilterTextActive(value);
 
     if (value === "all") {
-      console.log("first")
       setFilteredToys(allToys);
     } else {
-      console.log("here")
       let afterFilter = allToys.filter((data) => {
-        console.log(data)
         const filterByCategory = data.category.toLowerCase();
         const filterBySubCategory = data.subcategory.toLowerCase();
         return (
@@ -88,7 +84,6 @@ const Shop = () => {
           filterBySubCategory === value.toLowerCase()
         );
       });
-      console.log("done");
       setFilteredToys(afterFilter);
     }
   };

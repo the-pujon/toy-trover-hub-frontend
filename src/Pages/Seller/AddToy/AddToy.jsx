@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import MyToys from "./../MyToys/MyToys";
 import useApi from './../../../Hooks/useApi';
 
-const AddToy = () => {
+const AddToy = ({setRefresh}) => {
   const { loggedUser } = useUser();
   const navigate = useNavigate();
 
@@ -94,7 +94,7 @@ const AddToy = () => {
 
     post("toys", data, "addProduct")
       .then((data) => {
-        //navigate(`/MyToys`)
+        setRefresh(true)
         document.getElementById("addProduct").close()
       })
       .catch((err) => console.error(err));
@@ -216,7 +216,7 @@ const AddToy = () => {
                     id="category"
                     className="select select-ghost w-full max-w-xs border-t-0 border-l-0 border-r-0 rounded-none border-b-2 text-secondary text-sm border-b-secondary/50 outline-none appearance-none"
                   >
-                    <option disabled selected>
+                    <option disabled >
                       Category
                     </option>
                     {category.map((c) => (
@@ -236,7 +236,7 @@ const AddToy = () => {
                     id="subcategory"
                     className="select select-ghost w-full max-w-xs border-t-0 border-l-0 border-r-0 rounded-none border-b-2 text-secondary text-sm border-b-secondary/50 outline-none appearance-none"
                   >
-                    <option disabled selected>
+                    <option disabled >
                       Subcategory
                     </option>
                     {subcategory.map((c) => (

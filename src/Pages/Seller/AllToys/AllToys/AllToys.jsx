@@ -1,26 +1,30 @@
 import React, { useEffect, useState } from "react";
 import AddToy from "./../../AddToy/AddToy";
+import { MdClose } from "react-icons/md";
+import useApi from "../../../../Hooks/useApi";
 
 const AllToys = () => {
   const [toys, setAllToys] = useState([]);
   const [filteredToys, setFilteredToys] = useState([]);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+
+  const { get, put, del } = useApi();
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/toys")
-      .then((res) => res.json())
-      .then((data) => {
-        setAllToys(data);
-        setFilteredToys(data);
-      });
+    get("toys").then((data) => {
+      setAllToys(data);
+      setFilteredToys(data);
+    });
 
     fetch("/category.json")
       .then((res) => res.json())
       .then((data) => {
         setCategory(data);
       });
-  }, []);
+    setRefresh(false);
+  }, [refresh]);
 
   //for search
   const handleChange = (e) => {
@@ -31,7 +35,6 @@ const AllToys = () => {
   useEffect(() => {
     let value = search.toLowerCase();
     let toySearch = toys.filter((data) => {
-      console.log(data);
       if (data?.name) {
         const name = data?.name?.toLowerCase();
         return name.startsWith(value);
@@ -77,31 +80,30 @@ const AllToys = () => {
     }
   };
 
+  const handleDelete = (id) => {
+    del(`toys/${id}`, "CategoryDelete").then(() => {
+      setRefresh(true);
+    });
+  };
+
   return (
     <div>
       <div className="wrapper min-h-screen text-secondary backdrop-blur-md">
         <div className="overflow-x-auto pt-[8rem]">
           <div className="text-4xl font-thin">All Products</div>
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center space-x-4 text-primary">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center space-x-4 text-primary">
               <input
                 type="text"
                 placeholder="Search toys..."
-                //class="px-4 py-2 border border-secondary text-secondary bg-transparent rounded-lg focus:outline-none placeholder:text-secondary"
                 className="toyBorder focus:outline-none placeholder:text-secondary"
-                onchange="{handleSearch}"
                 onChange={handleChange}
                 onSubmit={handleSubmit}
               />
-              <select
-                onChange={handleCategory}
-                //defaultValue="All Categories"
-                //class="px-4 py-2 border border-secondary bg-transparent text-secondary rounded-lg focus:outline-none "
-                className="toyBorder"
-              >
-                <option>All Categories</option>
-                {category.map((c) => (
-                  <option value={c.value} className="bg-primary text-secondary">
+              <select onChange={handleCategory} className="toyBorder">
+                <option defaultValue='All Categories'>All Categories</option>
+                {category.map((c,i) => (
+                  <option key={i} value={c.value} className="bg-primary text-secondary">
                     {c.name}
                   </option>
                 ))}
@@ -126,18 +128,14 @@ const AllToys = () => {
                       ✕
                     </button>
                   </form>
-                  <AddToy />
+                  <AddToy setRefresh={setRefresh} />
                 </div>
                 <form method="dialog" className="modal-backdrop">
                   <button>close</button>
                 </form>
               </dialog>
 
-              <select
-                class="toyBorder"
-                //  value="{sortOption}"
-                onChange={handleSort}
-              >
+              <select className="toyBorder" onChange={handleSort}>
                 <option value="" className="bg-primary">
                   Sort By
                 </option>
@@ -160,11 +158,13 @@ const AllToys = () => {
                 <th>Seller</th>
                 <th>Category</th>
                 <th>Price</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {filteredToys?.map((toy) => (
                 <tr key={toy._id}>
+                  {/* toy image */}
                   <td>
                     <div className="flex items-center space-x-3">
                       <div className="avatar">
@@ -179,6 +179,8 @@ const AllToys = () => {
                       <div className="font-bold">{toy.name}</div>
                     </div>
                   </td>
+
+                  {/*  seller name and category */}
                   <td>
                     <div className="flex items-center space-x-3">
                       <div className="avatar">
@@ -205,6 +207,15 @@ const AllToys = () => {
                     </span>
                   </td>
                   <td>$ {toy.price}</td>
+
+                  <td>
+                    <button
+                      className="cursor-pointer text-3xl"
+                      onClick={() => handleDelete(toy._id)}
+                    >
+                      <MdClose />
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
