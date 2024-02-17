@@ -149,7 +149,7 @@ const Navbar = () => {
                   >
                     {navbarOption}
                     <li
-                      className="toyButton rounded-box"
+                      className="toyButton !mt-0   rounded-box"
                       onClick={handleLogOut}
                     >
                       <a>Logout</a>

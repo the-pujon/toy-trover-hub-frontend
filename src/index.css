@@ -37,7 +37,7 @@
 }
 
 .toyButton {
-  padding: 1rem;
+  padding:.5rem 1rem;
 
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -48,7 +48,7 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 600;
-  /*margin-top: 32px;*/
+  margin-top: 32px;
   cursor: pointer;
   box-shadow: inset 0px 0px 0px rgba(255, 255, 255, 0.2);
   transition: all 0.4s ease;

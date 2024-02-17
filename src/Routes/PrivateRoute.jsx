@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import { useUser } from "./../Hooks/useUser";
+import Loading from "../Components/Loading/Loading";
 
 const PrivateRoute = ({ children }) => {
   const { loggedUser, userLoading } = useUser();
@@ -9,7 +10,7 @@ const PrivateRoute = ({ children }) => {
     return (
       <div className="h-screen flex items-center justify-center  backdrop-blur-lg">
         {/*<span className="loading loading-bars loading-lg"></span>*/}
-        <svg className="fixed   h-36 w-36" viewBox="0 0 100 100">
+        {/*<svg className="fixed   h-36 w-36" viewBox="0 0 100 100">
           <g
             fill="none"
             stroke="#fff"
@@ -85,7 +86,8 @@ const PrivateRoute = ({ children }) => {
               repeatCount="indefinite"
             />
           </g>
-        </svg>
+        </svg>*/}
+        <Loading/>
       </div>
     );
   }

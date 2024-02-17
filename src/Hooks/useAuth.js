@@ -65,6 +65,7 @@ const useAuth = () => {
             fetch(`http://localhost:5000/api/users/${currentUser.email}`)
               .then((res) => res.json())
               .then((d) => {
+                console.log(d)
                 currentUser.role = d.role;
                 setLoggedUser(currentUser);
                 setLoading(false);

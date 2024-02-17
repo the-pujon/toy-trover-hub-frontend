@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PreviewImages from "../../../Components/PreviewImages/PreviewImages";
 import { useUser } from "../../../Hooks/useUser";
 import { useNavigate, useParams } from "react-router-dom";
+import useApi from "../../../Hooks/useApi";
 
 const EditToy = () => {
   const { loggedUser } = useUser();
@@ -14,6 +15,7 @@ const EditToy = () => {
   const [previousToy, setPreviousToy] = useState({});
   const [category, setCategory] = useState([]);
   const [subcategory, setSubcategory] = useState([]);
+  const { put } = useApi();
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/toys/${id}`)
@@ -86,13 +88,11 @@ const EditToy = () => {
       price: form.price.value,
     };
     console.log(data);
-    fetch(`http://localhost:5000/api/toys/${id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => navigate(-1))
+    put(`toys/${id}`,data,"update Product")
+      .then((data) => {
+        console.log(data);
+        //navigate(-1)
+      })
       .catch((err) => console.error(err));
   };
 
