@@ -15,13 +15,12 @@ const EditToy = () => {
   const [previousToy, setPreviousToy] = useState({});
   const [category, setCategory] = useState([]);
   const [subcategory, setSubcategory] = useState([]);
-  const { put } = useApi();
+  const { get, put } = useApi();
 
+  //getting information about product
   useEffect(() => {
-    fetch(`http://localhost:5000/api/toys/${id}`)
-      .then((res) => res.json())
+    get(`toys/${id}`, 'getSingleProduct')
       .then((data) => {
-        console.log(data);
         setPreviousToy(data);
         setPrvImg(data.toyImage);
         setUpLoadedImages(data.toyImage);
@@ -36,6 +35,7 @@ const EditToy = () => {
       });
   }, []);
 
+  //uploading new images
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
     setDisableButton(true);
@@ -60,8 +60,6 @@ const EditToy = () => {
         }
       })
       .then((data) => {
-        // Handle the uploaded image data here (e.g., display the URL)
-        console.log("Uploaded image URL:", data.data.url);
         setUpLoadedImages((prev) => [...prev, data.data.url]);
         setDisableButton(false);
       })
@@ -70,6 +68,7 @@ const EditToy = () => {
       });
   };
 
+  //submitting form upload
   const handleUpload = (e) => {
     e.preventDefault();
 
@@ -87,19 +86,16 @@ const EditToy = () => {
       description: form.description.value,
       price: form.price.value,
     };
-    console.log(data);
     put(`toys/${id}`,data,"update Product")
       .then((data) => {
-        console.log(data);
-        //navigate(-1)
+        navigate(-1)
       })
       .catch((err) => console.error(err));
   };
 
   const handleCategory = (e) => {
     const cValue = e.target.value;
-    console.log(cValue);
-    //[1,2,3].fin
+    //console.log(cValue);
     const sub = category.find((c) => {
       return c.value === cValue;
     });
@@ -108,6 +104,7 @@ const EditToy = () => {
 
     setSubcategory(sc);
   };
+
   return (
     <div className="">
       <div className="wrapper">
