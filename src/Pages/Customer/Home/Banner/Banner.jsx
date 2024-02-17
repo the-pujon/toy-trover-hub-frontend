@@ -14,7 +14,7 @@ import { Pagination } from "swiper/modules";
 const Banner = () => {
   return (
     <div className="wrapper mx-auto banner h-screen flex items-center justify-center min-h-screen !pt-20">
-      <aside class="responsive-banner second relative flex justify-between w-full flex-row gap-4">
+      <aside className="responsive-banner second relative flex justify-between w-full flex-row gap-4">
         <div className="flex-1  text-white flex items-center lg:items-start text-center lg:text-start flex-col justify-center gap-4">
           <div className="text-7xl font-bold" >Best <span className="text-transparent banner-text-stroke" >Kids Store</span> & Online Shop</div>
           <div className="text-3xl font-medium" >Give The Gift Of Your Children Everyday</div>

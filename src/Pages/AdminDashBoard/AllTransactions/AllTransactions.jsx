@@ -72,9 +72,9 @@ const AllTransactions = () => {
   return (
     <div>
       <div className="wrapper min-h-screen text-secondary backdrop-blur-md">
-        <div className="overflow-x-auto pt-[8rem]">
+        <div className="overflow-x-auto pt-12 md:pt-[8rem]">
           <div className="text-4xl font-thin">All Transactions</div>
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-4 gap-4">
             <div className="flex items-center space-x-4 text-primary cursor-text">
               <input
                 type="text"

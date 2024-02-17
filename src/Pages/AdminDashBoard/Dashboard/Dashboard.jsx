@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DashboardCard from "../../../Components/DashboardCard/DashboardCard";
 import useApi from "../../../Hooks/useApi";
+import SummaryChart from "../../../Components/SummaryChart/SummaryChart";
 
 const Dashboard = () => {
   const [totalUsers, setTotalUsers] = useState(0);
@@ -38,6 +39,11 @@ const Dashboard = () => {
         <DashboardCard name="products" amount={totalProducts} />
         <DashboardCard name="orders" amount={totalOrders} />
         <DashboardCard name="earnings" amount={totalEarnings} />
+      </div>
+      <div>
+        <div>
+<SummaryChart/>
+        </div>
       </div>
     </div>
   );

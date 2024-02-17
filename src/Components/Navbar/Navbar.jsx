@@ -2,7 +2,12 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.scss";
 import { useUser } from "../../Hooks/useUser";
-import { AiOutlineLogin, AiOutlineMenu, AiOutlineMenuUnfold, AiOutlineSearch } from "react-icons/ai";
+import {
+  AiOutlineLogin,
+  AiOutlineMenu,
+  AiOutlineMenuUnfold,
+  AiOutlineSearch,
+} from "react-icons/ai";
 import CartDropDownContent from "../CartDropDownContent/CartDropDownContent";
 import { useSelector } from "react-redux";
 
@@ -12,19 +17,16 @@ const Navbar = () => {
 
   const navbarOption = (
     <>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-      <li>
-        <NavLink to="/allToys">All Toys</NavLink>
-      </li>
       {loggedUser && (
         <>
           <li>
-            <NavLink to="/myToys">My Toys</NavLink>
+            <NavLink to="/myToys">Cart</NavLink>
           </li>
           <li>
-            <NavLink to="/addToy">Add Toy</NavLink>
+            <NavLink to="/myToys">My Orders</NavLink>
+          </li>
+          <li>
+            <NavLink to="/addToy">My Transactions</NavLink>
           </li>
         </>
       )}
@@ -45,7 +47,7 @@ const Navbar = () => {
           <div className="navbar-start">
             <div className="dropdown">
               <label tabIndex={0} className="btn btn-ghost lg:hidden mr-2 p-0">
-              <AiOutlineMenuUnfold className="text-2xl sm:text-3xl text-secondary" />
+                <AiOutlineMenuUnfold className="text-2xl sm:text-3xl text-secondary" />
               </label>
               <ul
                 tabIndex={0}
@@ -55,24 +57,31 @@ const Navbar = () => {
                     "linear-gradient(to top, #e7fa40 -50%, #e77f5a 100%)",
                 }}
               >
-                {navbarOption}
+                <li>
+                  <NavLink to="/">Home</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/allToys">All Toys</NavLink>
+                </li>
               </ul>
             </div>
             <Link to="/" className="normal-case ">
               <h1 className="text-center text-3xl sm:text-6xl font-bold flex items-end">
                 TTH
-                <span className="text-xl hidden lg:block font-semibold">Toy Trover Hub</span>
+                <span className="text-xl hidden lg:block font-semibold">
+                  Toy Trover Hub
+                </span>
               </h1>
             </Link>
           </div>
 
-          <div className="navbar-center w-1/3 md:w-7/12 lg:w-5/12 flex items-center gap-2 border-b ml-4">
+          {/*<div className="navbar-center w-1/3 md:w-7/12 lg:w-5/12 flex items-center gap-2 border-b ml-4">
             <div><AiOutlineSearch className="text-xl text-secondary" /></div>
             <input type="search" name="search" placeholder="Search"  className="text-secondary text-base bg-transparent w-full focus:outline-none placeholder:text-secondary" />
-          </div>
+          </div>*/}
 
           <div className="navbar-end">
-            <ul className=" menu menu-horizontal px-1 hidden lg:flex text-xl font-semibold">
+            <ul className=" menu menu-horizontal px-1 hidden lg:flex text-xl font-thin">
               {/*{navbarOption}*/}
               <li>
                 <NavLink to="/">Home</NavLink>

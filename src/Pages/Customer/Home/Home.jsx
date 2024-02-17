@@ -16,21 +16,21 @@ const Home = () => {
       <About />
 
       <div className="wrapper h-screen">
-        <div class="three text-6xl font-semibold mb-14">
+        <div className="three text-6xl font-semibold mb-14">
           <h1>Check Our Gallery</h1>
         </div>
         <Gellary />
       </div>
 
       <div className="wrapper mt-16">
-        <div class="three text-4xl lg:text-6xl font-semibold mb-14">
+        <div className="three text-4xl lg:text-6xl font-semibold mb-14">
           <h1>Check Our Popular Toys</h1>
         </div>
         <Shop loadedToys={loadedToys} />
       </div>
 
       <div className="wrapper my-16">
-        <div class="three text-6xl font-semibold mb-14">
+        <div className="three text-6xl font-semibold mb-14">
           <h1>What We Provide</h1>
         </div>
         <WeProvide />

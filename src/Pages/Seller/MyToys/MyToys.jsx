@@ -97,19 +97,19 @@ const MyToys = () => {
     <div>
       <div className="wrapper min-h-screen text-secondary backdrop-blur-md">
         <div className="overflow-x-auto pt-[8rem]">
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center space-x-4 text-primary">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center space-x-4 text-primary">
               <input
                 type="text"
                 placeholder="Search toys..."
-                class="px-4 py-2 border border-secondary text-secondary bg-transparent rounded-lg focus:outline-none "
+                className="px-4 py-2 border border-secondary text-secondary bg-transparent rounded-lg focus:outline-none "
                 onchange="{handleSearch}"
                 onChange={handleChange}
                 onSubmit={handleSubmit}
               />
               <select
                 onChange={handleCategory}
-                class="px-4 py-2 border border-secondary bg-transparent text-secondary rounded-lg focus:outline-none "
+                className="px-4 py-2 border border-secondary bg-transparent text-secondary rounded-lg focus:outline-none "
               >
                 <option value="">All Categories</option>
                 {category.map((c) => (
@@ -120,7 +120,7 @@ const MyToys = () => {
               </select>
             </div>
             <select
-              class="px-4 py-2 border border-secondary bg-transparent rounded-lg focus:outline-none "
+              className="px-4 py-2 border border-secondary bg-transparent rounded-lg focus:outline-none "
               //  value="{sortOption}"
               onChange={handleSort}
             >
