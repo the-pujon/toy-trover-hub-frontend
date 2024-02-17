@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AddToy from "./../../AddToy/AddToy";
-import { MdClose } from "react-icons/md";
+import { MdClose, MdEdit } from "react-icons/md";
 import useApi from "../../../../Hooks/useApi";
 import { Link } from "react-router-dom";
 
@@ -61,11 +61,10 @@ const AllToys = () => {
   const handleCategory = (e) => {
     e.preventDefault();
     //console.log(e.target.value);
-    get(`toys?category=${e.target.value}`)
-      .then((data) => {
-        setAllToys(data);
-        setFilteredToys(data);
-      });
+    get(`toys?category=${e.target.value}`).then((data) => {
+      setAllToys(data);
+      setFilteredToys(data);
+    });
   };
 
   const handleSort = (e) => {
@@ -228,12 +227,20 @@ const AllToys = () => {
                   <td>$ {toy.price}</td>
 
                   <td>
-                    <button
-                      className="cursor-pointer text-3xl"
-                      onClick={() => handleDelete(toy._id)}
-                    >
-                      <MdClose />
-                    </button>
+                    <div className="flex gap-2" >
+                      <button
+                        className="cursor-pointer text-2xl"
+                        onClick={() => handleDelete(toy._id)}
+                      >
+                        <MdClose />
+                      </button>
+                      <Link
+                        to={`/dashboard/editToy/${toy._id}`}
+                        className="cursor-pointer text-2xl"
+                      >
+                        <MdEdit />
+                      </Link>
+                    </div>
                   </td>
                 </tr>
               ))}

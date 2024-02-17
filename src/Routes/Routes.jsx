@@ -70,14 +70,6 @@ const Routes = createBrowserRouter([
         ),
       },
       {
-        path: "editToy/:id",
-        element: (
-          <PrivateRoute>
-            <EditToy />
-          </PrivateRoute>
-        ),
-      },
-      {
         path: 'paymentSuccess/:orderId',
         element: <SuccessPayment/>
       }
@@ -106,7 +98,15 @@ const Routes = createBrowserRouter([
       {
         path: 'transactions',
         element: <AllTransactions/>
-      }
+      },
+      {
+        path: "editToy/:id",
+        element: (
+          <PrivateRoute>
+            <EditToy />
+          </PrivateRoute>
+        ),
+      },
     ]
   }
 ]);
