@@ -10,7 +10,6 @@ import Contact from "../../../Components/Contact/Contact";
 
 const Home = () => {
   const loadedToys = useLoaderData();
-  //console.log(loadedToys);
   return (
     <div className="">
       <Banner />

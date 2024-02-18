@@ -3,11 +3,7 @@ import Home from "../Pages/Customer/Home/Home";
 import Main from "../Layouts/Main";
 import Login from "../Pages/Authentication/Login/Login";
 import SignUp from "../Pages/Authentication/SignUp/SignUp";
-import AddToy from "../Pages/Seller/AddToy/AddToy";
 import SingleToy from "../Pages/Customer/SingleToy/SingleToy/SingleToy";
-import AllToys from "../Pages/Seller/AllToys/AllToys/AllToys";
-import MyToys from "../Pages/Seller/MyToys/MyToys";
-import EditToy from "../Pages/Seller/EditToy/EditToy";
 import PrivateRoute from "./PrivateRoute";
 import Shop from "../Pages/Customer/Shop/Shop";
 import Cart from "../Pages/Customer/Cart/Cart";
@@ -19,6 +15,9 @@ import AllTransactions from "../Pages/AdminDashBoard/AllTransactions/AllTransact
 import Dashboard from "./../Pages/AdminDashBoard/Dashboard/Dashboard";
 import MyOrders from "../Pages/Customer/MyOrders/MyOrders";
 import MyTransactions from "../Pages/Customer/MyTransactions/MyTransactions";
+import AllToys from "../Pages/AdminDashBoard/AllToys/AllToys/AllToys";
+import EditToy from "./../Pages/AdminDashBoard/EditToy/EditToy";
+import AdminRoute from "./AdminRoute";
 
 const Routes = createBrowserRouter([
   {
@@ -39,21 +38,8 @@ const Routes = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: "addToy",
-        element: (
-          <PrivateRoute>
-            <AddToy />
-          </PrivateRoute>
-        ),
-      },
-      {
         path: "shop",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <Shop />
-          </PrivateRoute>
-        ),
+        element: <Shop />,
       },
       {
         path: "cart",
@@ -71,18 +57,13 @@ const Routes = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-
-      {
-        path: "myToys",
-        element: (
-          <PrivateRoute>
-            <MyToys />
-          </PrivateRoute>
-        ),
-      },
       {
         path: "paymentSuccess/:orderId",
-        element: <SuccessPayment />,
+        element: (
+          <PrivateRoute>
+            <SuccessPayment />
+          </PrivateRoute>
+        ),
       },
       {
         path: "myOrders",
@@ -104,33 +85,71 @@ const Routes = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <AdminRoute>
+          <DashboardLayout />
+        </AdminRoute>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "overview",
-        element: <Dashboard />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <Dashboard />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "allToys",
-        element: <AllToys />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllToys />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "allOrders",
-        element: <AllOrders />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllOrders />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "customers",
-        element: <ManageCustomers />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageCustomers />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "transactions",
-        element: <AllTransactions />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllTransactions />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "editToy/:id",
         element: (
           <PrivateRoute>
-            <EditToy />
+            <AdminRoute>
+              <EditToy />
+            </AdminRoute>
           </PrivateRoute>
         ),
       },

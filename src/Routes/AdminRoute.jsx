@@ -3,9 +3,8 @@ import { Navigate } from "react-router-dom";
 import { useUser } from "./../Hooks/useUser";
 import Loading from "../Components/Loading/Loading";
 
-const PrivateRoute = ({ children }) => {
+const AdminRoute = ({ children }) => {
   const { loggedUser, userLoading } = useUser();
-  //console.log(loggedUser?.role)
 
   if (userLoading) {
     return (
@@ -15,10 +14,10 @@ const PrivateRoute = ({ children }) => {
     );
   }
 
-  if (loggedUser) {
+  if (loggedUser && loggedUser?.role === "admin") {
     return children;
   }
   return <Navigate to="/login"></Navigate>;
 };
 
-export default PrivateRoute;
+export default AdminRoute;

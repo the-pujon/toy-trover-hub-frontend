@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import AddToy from "./../../AddToy/AddToy";
+import AddToy from "../../../AdminDashBoard/AddToy/AddToy";
 import { MdClose, MdEdit } from "react-icons/md";
 import useApi from "../../../../Hooks/useApi";
 import { Link } from "react-router-dom";

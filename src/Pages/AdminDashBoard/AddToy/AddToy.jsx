@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import PreviewImages from "../../../Components/PreviewImages/PreviewImages";
 import { useUser } from "../../../Hooks/useUser";
 import { useNavigate } from "react-router-dom";
-import MyToys from "./../MyToys/MyToys";
-import useApi from './../../../Hooks/useApi';
+import useApi from '../../../Hooks/useApi';
 
 const AddToy = ({setRefresh}) => {
   const { loggedUser } = useUser();
