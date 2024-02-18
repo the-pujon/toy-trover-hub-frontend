@@ -94,11 +94,11 @@ const Cart = () => {
   }
 
   return (
-    <div className="wrapper min-h-screen pt-32 text-secondary">
-      <div className="flex gap-5">
-        <div className="basis-3/4 border-r pr-5 border-dotted">
+    <div className="wrapper min-h-screen pt-32 text-secondary py-5">
+      <div className="flex flex-col lg:flex-row gap-5">
+        <div className=" lg:basis-3/4 border-r pr-5 border-dotted w-full overflow-auto">
           <div className="text-4xl font-semibold pb-4" >Cart</div>
-          <div className="flex flex-col gap-2 border-b border-dotted">
+          <div className="flex flex-col gap-2 border-b border-dotted w-[60rem] lg:w-full overflow-auto">
             {/* headers */}
             <div className="grid grid-cols-4 border-b border-dotted p-2">
               <div className="flex items-center justify-start">Products</div>
@@ -198,7 +198,7 @@ const Cart = () => {
               )}
             </div>
           </div>
-          <div className="grid grid-cols-4">
+          <div className="grid grid-cols-4 w-[60rem] lg:w-full overflow-auto">
             <div className="col-span-3">
               Total Quantity: {cartItems.totalItem}
             </div>
