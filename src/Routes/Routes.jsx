@@ -16,7 +16,8 @@ import DashboardLayout from "../Layouts/DashboardLayout";
 import AllOrders from "../Pages/AdminDashBoard/AllOrders/AllOrders";
 import ManageCustomers from "../Pages/AdminDashBoard/ManageCustomers/ManageCustomers";
 import AllTransactions from "../Pages/AdminDashBoard/AllTransactions/AllTransactions";
-import Dashboard from './../Pages/AdminDashBoard/Dashboard/Dashboard';
+import Dashboard from "./../Pages/AdminDashBoard/Dashboard/Dashboard";
+import MyOrders from "../Pages/Customer/MyOrders/MyOrders";
 
 const Routes = createBrowserRouter([
   {
@@ -45,12 +46,21 @@ const Routes = createBrowserRouter([
         ),
       },
       {
-        path: 'shop',
-        element:<PrivateRoute> <Shop/></PrivateRoute>
+        path: "shop",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Shop />
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'cart',
-        element: <Cart/>
+        path: "cart",
+        element: (
+          <PrivateRoute>
+            <Cart />
+          </PrivateRoute>
+        ),
       },
       {
         path: "toys/:id",
@@ -70,34 +80,42 @@ const Routes = createBrowserRouter([
         ),
       },
       {
-        path: 'paymentSuccess/:orderId',
-        element: <SuccessPayment/>
-      }
+        path: "paymentSuccess/:orderId",
+        element: <SuccessPayment />,
+      },
+      {
+        path: "myOrders",
+        element: (
+          <PrivateRoute>
+            <MyOrders />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout/>,
+    element: <DashboardLayout />,
     children: [
       {
         path: "overview",
-        element: <Dashboard/>
+        element: <Dashboard />,
       },
       {
         path: "allToys",
         element: <AllToys />,
       },
       {
-        path: 'allOrders',
-        element: <AllOrders/>
+        path: "allOrders",
+        element: <AllOrders />,
       },
       {
-        path: 'customers',
-        element: <ManageCustomers/>
+        path: "customers",
+        element: <ManageCustomers />,
       },
       {
-        path: 'transactions',
-        element: <AllTransactions/>
+        path: "transactions",
+        element: <AllTransactions />,
       },
       {
         path: "editToy/:id",
@@ -107,8 +125,8 @@ const Routes = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-    ]
-  }
+    ],
+  },
 ]);
 
 export default Routes;

@@ -20,10 +20,10 @@ const Navbar = () => {
       {loggedUser && (
         <>
           <li>
-            <NavLink to="/myToys">Cart</NavLink>
+            <NavLink to="/cart">Cart</NavLink>
           </li>
           <li>
-            <NavLink to="/myToys">My Orders</NavLink>
+            <NavLink to="/myOrders">My Orders</NavLink>
           </li>
           <li>
             <NavLink to="/addToy">My Transactions</NavLink>
