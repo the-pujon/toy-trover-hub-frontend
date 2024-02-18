@@ -5,11 +5,8 @@ import ShopCard from '../../../../Components/ShopCard/ShopCard';
 import "./Shop.scss";
 import { useUser } from './../../../../Hooks/useUser';
 
-//TODO: Change function name
-
 
 const Shop = ({ loadedToys }) => {
-  console.log(loadedToys)
   const [usedToy, setUsedToy] = useState(loadedToys);
   const [toys, setToys] = useState(loadedToys);
   const [category, setCategory] = useState([]);
@@ -20,7 +17,6 @@ useEffect(()=>{
   fetch("/category.json")
   .then((res) => res.json())
   .then((data) => {
-    console.log(data)
     setCategory(data);
   });
 },[])
@@ -30,9 +26,9 @@ useEffect(()=>{
   };
 
   return (
-    <div>
+    <div className="" >
       <Tabs className='wrapper' >
-        <TabList  >
+        <TabList data-aos="fade-up" >
           {/* categories */}
           {category.map(
             (category, index) => (
@@ -48,10 +44,10 @@ useEffect(()=>{
           (category, index) => (
             <TabPanel key={index}>
               {/* Showing all card */}
-              <div className="grid gap-2 lg:gap-5 xl:gap-4 mt-4  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="grid gap-3 lg:gap-5 xl:gap-4 mt-4  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {usedToy?.map((toy) => (
                   <div key={toy._id} className="justify-self-center" >
-                    <ShopCard toy={toy} />
+                    <ShopCard toy={toy}  />
                   </div>
                 ))}
               </div>

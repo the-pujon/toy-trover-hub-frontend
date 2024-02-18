@@ -11,22 +11,22 @@ const Home = () => {
   const loadedToys = useLoaderData();
   //console.log(loadedToys);
   return (
-    <div>
+    <div className="">
       <Banner />
       <About />
 
-      <div className="wrapper h-screen">
-        <div className="three text-6xl font-semibold mb-14">
-          <h1>Check Our Gallery</h1>
-        </div>
-        <Gellary />
-      </div>
-
-      <div className="wrapper mt-16">
-        <div className="three text-4xl lg:text-6xl font-semibold mb-14">
+      <div className="wrapper mt-40 lg:mt-0 min-h-screen">
+        <div className="three text-4xl lg:text-6xl font-semibold mb-5 md:mb-14">
           <h1>Check Our Popular Toys</h1>
         </div>
         <Shop loadedToys={loadedToys} />
+      </div>
+
+      <div className="wrapper mt-10 lg:mt-0 min-h-screen">
+        <div className="three text-4xl lg:text-6xl font-semibold mb-5 md:mb-14">
+          <h1>Check Our Gallery</h1>
+        </div>
+        <Gellary />
       </div>
 
       <div className="wrapper my-16">

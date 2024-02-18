@@ -45,7 +45,7 @@ const ShopCard = ({ toy }) => {
 
   return (
     <>
-      <div className="w-80 rounded-xl bg-[rgba(0,0,0,0.1)] backdrop-blur-sm shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300">
+      <div data-aos="fade-up" className="w-80 rounded-xl bg-[rgba(0,0,0,0.1)] backdrop-blur-sm shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300">
         <Link
           to={`/toys/${_id}`}
           className="h-48 w-full relative  flex flex-col justify-between bg-cover bg-center rounded-xl"
