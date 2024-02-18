@@ -19,7 +19,7 @@ const EditToy = () => {
 
   //getting information about product
   useEffect(() => {
-    get(`toys/${id}`, 'getSingleProduct')
+    get(`toys/${id}`, "getSingleProduct")
       .then((data) => {
         setPreviousToy(data);
         setPrvImg(data.toyImage);
@@ -86,9 +86,9 @@ const EditToy = () => {
       description: form.description.value,
       price: form.price.value,
     };
-    put(`toys/${id}`,data,"update Product")
+    put(`toys/${id}`, data, "update Product")
       .then((data) => {
-        navigate(-1)
+        navigate(-1);
       })
       .catch((err) => console.error(err));
   };
@@ -108,7 +108,7 @@ const EditToy = () => {
   return (
     <div className="">
       <div className="wrapper">
-        <div className="flex items-center justify-center h-screen">
+        <div className="flex items-center justify-center min-h-screen flex-col lg:flex-row">
           <div className="flex-1">
             <PreviewImages PreviewImages={prvImg} />
           </div>
@@ -215,7 +215,7 @@ const EditToy = () => {
                   Toy Description
                 </label>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center flex-col lg:flex-row gap-2">
                 {/* category */}
                 <div className="form-control relative my-6 w-full">
                   <select
@@ -237,7 +237,7 @@ const EditToy = () => {
                   </select>
                 </div>
                 {/* subcategory */}
-                <div className="form-control relative my-6 w-full">
+                <div className="form-control relative mb-6 lg:mb-0 lg:my-6 w-full">
                   <select
                     id="subcategory"
                     className="select select-ghost w-full max-w-xs border-t-0 border-l-0 border-r-0 rounded-none border-b-2 text-gray-400 text-sm border-b-secondary/50 outline-none appearance-none"
@@ -257,7 +257,8 @@ const EditToy = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex flex-col lg:flex-row items-center gap-2">
+                {/* price */}
                 <div className="form-control relative my-6 w-full">
                   <input
                     autoComplete="off"

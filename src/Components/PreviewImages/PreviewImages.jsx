@@ -7,10 +7,10 @@ const PreviewImages = ({ PreviewImages }) => {
     PreviewImages && setFullImage(PreviewImages[0]);
   }, [PreviewImages]);
   return (
-    <div className="h-[500px]">
-      <div className="grid grid-cols-12 gap-0 md:gap-[30px] ">
+    <div className="lg:h-[500px]">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-[30px]">
         {/* all images */}
-        <div className="col-span-3 flex flex-col gap-5 h-[500px]   overflow-y-scroll ">
+        <div className="lg:col-span-3 flex flex-row lg:flex-col gap-5 lg:h-[500px] overflow-y-scroll order-2 lg:order-1">
           {PreviewImages?.map((image, index) => {
             return (
               <button
@@ -27,7 +27,7 @@ const PreviewImages = ({ PreviewImages }) => {
           })}
         </div>
         {/* preview image */}
-        <div className="col-span-9 rounded-xl flex items-center justify-center">
+        <div className="lg:col-span-9 rounded-xl flex items-center justify-center order-1 lg:order-2">
           {fullImage && PreviewImages ? (
             <img
               src={fullImage}

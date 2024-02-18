@@ -135,7 +135,7 @@ const AllToys = () => {
                 id="addProduct"
                 className="modal modal-bottom sm:modal-middle bg-primary/20"
               >
-                <div className="modal-box  w-11/12 min-w-[80rem] max-w-7xl border border-dotted border-secondary/30 backdrop-blur-md bg-secondary/10">
+                <div className="modal-box md:min-w-[40rem] lg:w-4/5 lg:min-w-[60rem] xl:w-11/12 xl:min-w-[80rem] max-w-7xl border border-dotted border-secondary/30 backdrop-blur-md bg-secondary/10">
                   <form method="dialog">
                     <button className="focus:outline-none hover:outline-none absolute text-3xl font-thin right-2 top-2">
                       ✕

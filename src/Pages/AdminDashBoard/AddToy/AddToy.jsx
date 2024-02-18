@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import PreviewImages from "../../../Components/PreviewImages/PreviewImages";
 import { useUser } from "../../../Hooks/useUser";
-import { useNavigate } from "react-router-dom";
-import useApi from '../../../Hooks/useApi';
+import useApi from "../../../Hooks/useApi";
 
-const AddToy = ({setRefresh}) => {
+const AddToy = ({ setRefresh }) => {
   const { loggedUser } = useUser();
-  const navigate = useNavigate();
 
   const [upLoadedImages, setUpLoadedImages] = useState([]);
   const [prvImg, setPrvImg] = useState([]);
@@ -14,7 +12,7 @@ const AddToy = ({setRefresh}) => {
   const [category, setCategory] = useState([]);
   const [subcategory, setSubcategory] = useState([]);
 
-  const {post} = useApi()
+  const { post } = useApi();
 
   useEffect(() => {
     fetch("/category.json")
@@ -93,8 +91,8 @@ const AddToy = ({setRefresh}) => {
 
     post("toys", data, "addProduct")
       .then((data) => {
-        setRefresh(true)
-        document.getElementById("addProduct").close()
+        setRefresh(true);
+        document.getElementById("addProduct").close();
       })
       .catch((err) => console.error(err));
   };
@@ -102,7 +100,7 @@ const AddToy = ({setRefresh}) => {
   return (
     <div className="">
       <div className="wrapper">
-        <div className="flex items-center justify-center  flex-row-reverse">
+        <div className="flex items-center justify-center flex-col lg:flex-row-reverse ">
           <div className="flex-1">
             <PreviewImages PreviewImages={prvImg} />
           </div>
@@ -207,7 +205,7 @@ const AddToy = ({setRefresh}) => {
                   Toy Description
                 </label>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-col lg:flex-row items-center gap-2">
                 {/* category */}
                 <div className="form-control relative my-6 w-full">
                   <select
@@ -215,9 +213,7 @@ const AddToy = ({setRefresh}) => {
                     id="category"
                     className="select select-ghost w-full max-w-xs border-t-0 border-l-0 border-r-0 rounded-none border-b-2 text-secondary text-sm border-b-secondary/50 outline-none appearance-none"
                   >
-                    <option disabled >
-                      Category
-                    </option>
+                    <option disabled>Category</option>
                     {category.map((c) => (
                       <option
                         value={c.value}
@@ -230,14 +226,12 @@ const AddToy = ({setRefresh}) => {
                   </select>
                 </div>
                 {/* subcategory */}
-                <div className="form-control relative my-6 w-full">
+                <div className="form-control relative mb-6 lg:mb-0 lg:my-6 w-full">
                   <select
                     id="subcategory"
                     className="select select-ghost w-full max-w-xs border-t-0 border-l-0 border-r-0 rounded-none border-b-2 text-secondary text-sm border-b-secondary/50 outline-none appearance-none"
                   >
-                    <option disabled >
-                      Subcategory
-                    </option>
+                    <option disabled>Subcategory</option>
                     {subcategory.map((c) => (
                       <option
                         value={c.value}
@@ -251,7 +245,7 @@ const AddToy = ({setRefresh}) => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex flex-col lg:flex-row items-center gap-2">
                 {/* price */}
                 <div className="form-control relative my-6 w-full">
                   <input
@@ -276,7 +270,6 @@ const AddToy = ({setRefresh}) => {
                     In Stock
                   </label>
                   <div className="flex items-center">
-                    {" "}
                     <div className="form-control">
                       <label className="label cursor-pointer">
                         <span className="label-text text-secondary mr-2">
@@ -321,20 +314,22 @@ const AddToy = ({setRefresh}) => {
                 </div>
               </div>
             </form>
-            <button
-              form="productAdd"
-              type="submit"
-              disabled={disableButton}
-              className="toyButton -mt-10"
-            >
-              Submit
-            </button>
-            <button
-              onClick={() => document.getElementById("addProduct").close()}
-              className="ml-2 toyButton"
-            >
-              Cancel
-            </button>
+            <div className="flex" >
+              <button
+                form="productAdd"
+                type="submit"
+                disabled={disableButton}
+                className="toyButton -mt-10"
+              >
+                Submit
+              </button>
+              <button
+                onClick={() => document.getElementById("addProduct").close()}
+                className="ml-2 toyButton"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       </div>
