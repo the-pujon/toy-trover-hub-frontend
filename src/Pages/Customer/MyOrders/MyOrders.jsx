@@ -8,13 +8,12 @@ const MyOrders = () => {
   const [refresh, setRefresh] = useState(false);
   const [search, setSearch] = useState("");
   const { loggedUser, logOut, userLoading } = useUser();
-  console.log(loggedUser?.email);
+
 
   const { get, put } = useApi();
 
   useEffect(() => {
     get(`orders/${loggedUser?.email}`, "getOrders").then((data) => {
-      console.log(data);
       setOrders(data);
       setFilterOrders(data);
     });

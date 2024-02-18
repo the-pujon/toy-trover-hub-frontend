@@ -18,6 +18,7 @@ import ManageCustomers from "../Pages/AdminDashBoard/ManageCustomers/ManageCusto
 import AllTransactions from "../Pages/AdminDashBoard/AllTransactions/AllTransactions";
 import Dashboard from "./../Pages/AdminDashBoard/Dashboard/Dashboard";
 import MyOrders from "../Pages/Customer/MyOrders/MyOrders";
+import MyTransactions from "../Pages/Customer/MyTransactions/MyTransactions";
 
 const Routes = createBrowserRouter([
   {
@@ -88,6 +89,14 @@ const Routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "myTransactions",
+        element: (
+          <PrivateRoute>
+            <MyTransactions />
           </PrivateRoute>
         ),
       },

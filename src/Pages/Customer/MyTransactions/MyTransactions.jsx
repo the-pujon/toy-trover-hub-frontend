@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import useApi from "../../../Hooks/useApi";
+import {useUser} from "../../../Hooks/useUser";
 
-const AllTransactions = () => {
+const MyTransactions = () => {
   const [transactions, setTransactions] = useState([]);
   const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [search, setSearch] = useState("");
+  const { loggedUser, logOut, userLoading } = useUser();
   const { get, put } = useApi();
 
   useEffect(() => {
-    get("payments", "getPayments").then((data) => {
-      console.log(data)
-      setTransactions(data.payments);
-      setFilteredTransactions(data.payments);
+    get(`payments/email/${loggedUser?.email}`, "getPayments").then((data) => {
+      setTransactions(data.payment);
+      setFilteredTransactions(data.payment);
     });
   }, []);
 
@@ -146,4 +147,4 @@ const AllTransactions = () => {
   );
 };
 
-export default AllTransactions;
+export default MyTransactions;
