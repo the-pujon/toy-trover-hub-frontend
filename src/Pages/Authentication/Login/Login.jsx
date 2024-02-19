@@ -8,11 +8,14 @@ import { FaGithub } from "react-icons/fa";
 import login1 from "../../../assets/Auth/login2.svg";
 
 import { useUser } from "../../../Hooks/useUser";
+import useApi from "../../../Hooks/useApi";
 
 const Login = () => {
   const { loginWithEmail, loginWithGoogle, loginWithGithub } = useUser();
 
-  const location = useLocation();
+  //const location = useLocation();
+
+  const {get, put} = useApi()
 
 
   const [error, setError] = useState(false);
@@ -42,27 +45,19 @@ const Login = () => {
   const handleGoogleLogin = () => {
     loginWithGoogle()
       .then((res) => {
-        //console.log(res.user);
-        //navigate("/");
         const { displayName, email, photoURL } = res.user;
 
-        fetch(`http://localhost:5000/api/users/${email}`)
-          .then((res) => res.json())
+        get(`users/${email}`)
           .then((data) => {
             console.log(data);
             if (data) {
               navigate("/");
             } else {
-              fetch("http://localhost:5000/api/users", {
-                method: "POST",
-                headers: { "Content-type": "application/json" },
-                body: JSON.stringify({
+              put("users",  {
                   name: displayName,
                   email,
                   image: photoURL,
-                }),
-              })
-                .then((res) => res.json())
+                }, 'createUser')
                 .then((data) => {
                   console.log(data);
                   navigate("/");
