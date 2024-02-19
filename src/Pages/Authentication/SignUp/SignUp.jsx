@@ -10,11 +10,14 @@ import signup1 from "../../../assets/Auth/login2.svg";
 import { updateProfile } from "firebase/auth";
 import { useUser } from "../../../Hooks/useUser";
 import { auth } from "../../../Firebase/firebase.init";
+import useApi from "../../../Hooks/useApi";
 
 const SignUp = () => {
   const { registrationWithEmail, loginWithGoogle, loginWithGithub } = useUser();
 
   const navigate = useNavigate();
+
+  const {get, put} = useApi()
 
   //registration by email
   const handleSubmit = (e) => {
@@ -35,15 +38,7 @@ const SignUp = () => {
           photoURL: photoURL,
         })
           .then((res) => {
-            //console.log(res);
-            //navigate("/");
-
-            fetch("http://localhost:5000/api/users", {
-              method: "POST",
-              headers: { "Content-type": "application/json" },
-              body: JSON.stringify({ name, email, password, image: photoURL }),
-            })
-              .then((res) => res.json())
+            put("users",  { name, email, password, image: photoURL }, 'createUser')
               .then((data) => {
                 console.log(data);
                 navigate("/");
@@ -59,27 +54,19 @@ const SignUp = () => {
   const handleGoogleLogin = () => {
     loginWithGoogle()
       .then((res) => {
-        //console.log(res.user);
-        //navigate("/");
         const { displayName, email, photoURL } = res.user;
 
-        fetch(`http://localhost:5000/api/users/${email}`)
-          .then((res) => res.json())
+        get(`users/${email}`)
           .then((data) => {
             console.log(data);
             if (data) {
               navigate("/");
             } else {
-              fetch("http://localhost:5000/api/users", {
-                method: "POST",
-                headers: { "Content-type": "application/json" },
-                body: JSON.stringify({
+              put("users",  {
                   name: displayName,
                   email,
                   image: photoURL,
-                }),
-              })
-                .then((res) => res.json())
+                }, 'createUser')
                 .then((data) => {
                   console.log(data);
                   navigate("/");
