@@ -9,14 +9,14 @@ const CartDropDownContent = ({ cartItems }) => {
       <div className="flex w-full items-center justify-between border-b border-secondary border-dashed">
         <div className="flex items-center gap-2 p-1">
           <FaOpencart className="text-3xl" />:{" "}
-          <span> {cartItems.products.length}</span>
+          <span> {cartItems?.products?.length}</span>
         </div>
-        <div className="text-base">Total: {cartItems.totalPrice}</div>
+        <div className="text-base">Total: {cartItems?.totalPrice}</div>
       </div>
       {/* cart item list */}
       <>
         <div className="flex flex-col gap-2">
-          {cartItems.products.map((product, i) => (
+          {cartItems?.products?.map((product, i) => (
             <div
               key={i}
               className="flex items-center gap-2 justify-between p-2"

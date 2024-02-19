@@ -82,7 +82,26 @@ const SignUp = () => {
   const handleGithubLogin = () => {
     loginWithGithub()
       .then((res) => {
-        navigate("/");
+        const { displayName, email, photoURL } = res.user;
+
+        get(`users/${email}`)
+          .then((data) => {
+            console.log(data);
+            if (data) {
+              navigate("/");
+            } else {
+              put("users",  {
+                  name: displayName,
+                  email,
+                  image: photoURL,
+                }, 'createUser')
+                .then((data) => {
+                  console.log(data);
+                  navigate("/");
+                })
+                .catch((err) => console.error(err));
+            }
+          });
       })
       .catch((err) => console.log(err));
   };
