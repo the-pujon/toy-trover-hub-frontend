@@ -70,7 +70,7 @@ const Cart = () => {
       "Content-Type": "application/json",
     };
     const response = await fetch(
-      `http://localhost:5000/api/checkout`,
+      `${import.meta.env.VITE_BASE_URL}/api/checkout`,
       {
         method: "POST",
         headers: headers,

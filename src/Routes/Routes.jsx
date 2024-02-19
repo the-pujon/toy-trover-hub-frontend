@@ -27,7 +27,7 @@ const Routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:5000/api/toys"),
+        loader: () => fetch(`${import.meta.env.VITE_BASE_URL}/api/toys`),
       },
       {
         path: "login",

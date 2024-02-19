@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import PreviewImages from "../../../../Components/PreviewImages/PreviewImages";
 import { FaStar } from "react-icons/fa";
 import QuantityUpdate from "../../../../Components/QuantityUpdate/QuantityUpdate";
+import useApi from "../../../../Hooks/useApi";
 
 const SingleToy = () => {
   const id = useParams().id;
@@ -10,9 +11,10 @@ const SingleToy = () => {
   const [toyDetails, setToyDetails] = useState({});
   const [quantity, setQuantity] = useState(1);
 
+  const  {get} = useApi()
+
   useEffect(() => {
-    fetch(`http://localhost:5000/api/toys/${id}`)
-      .then((res) => res.json())
+    get(`toys/${id}`)
       .then((data) => {
         setToyDetails(data);
         console.log(data);

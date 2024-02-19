@@ -7,8 +7,8 @@ const useApi = () => {
   const [loading, setLoading] = useState(false);
   const jwtToken = localStorage.getItem('access-token')
 
-//  const apiUrl = `${import.meta.env.VITE_BASE_URL}/api`;
-const apiUrl = `http://localhost:5000/api`
+  const apiUrl = `${import.meta.env.VITE_BASE_URL}/api`;
+console.log(import.meta.env.VITE_BASE_URL)
 
   const headers = {
     'Content-Type': 'application/json',
