@@ -63,6 +63,11 @@ const Navbar = () => {
                 <li>
                   <NavLink to="/allToys">All Toys</NavLink>
                 </li>
+                {loggedUser?.role === "admin" && (
+                  <li>
+                    <NavLink to="/dashboard/overview">Dashboard</NavLink>
+                  </li>
+                )}
               </ul>
             </div>
             <Link to="/" className="normal-case ">
@@ -89,6 +94,11 @@ const Navbar = () => {
               <li>
                 <NavLink to="/shop">Shop</NavLink>
               </li>
+              {loggedUser?.role === "admin" && (
+                <li>
+                  <NavLink to="/dashboard/overview">Dashboard</NavLink>
+                </li>
+              )}
             </ul>
 
             {loggedUser && (
@@ -136,7 +146,7 @@ const Navbar = () => {
                     className="btn btn-ghost btn-circle avatar"
                   >
                     <div className="w-10 rounded-full">
-                      <img src={loggedUser?.photoURL}/>
+                      <img src={loggedUser?.photoURL} />
                     </div>
                   </label>
                   <ul
