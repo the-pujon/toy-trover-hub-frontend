@@ -1,13 +1,15 @@
 import React from "react";
 import FooterImg from "../../assets/FooterImage.svg";
+import TTH from "../../assets/logo/tth.png"
 
 const Footer = () => {
   return (
     <div className="backdrop-blur-sm bg-primary/30 shadow-[10px_0px_20px_0px_rgba(0,0,0,0.3)] text-secondary">
       <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded wrapper">
-        <h1 className="text-center text-6xl font-bold flex items-end">
+        {/*<h1 className="text-center text-6xl font-bold flex items-end">
           TTH<span className="text-xl   font-semibold">Toy Trover Hub</span>
-        </h1>
+        </h1>*/}
+        <img src={TTH} alt="logo" className="w-64" />
         <p className="text-sm tracking-widest -mt-14" >We Brings Joy to your child</p>
 
         <div className="flex justify-between flex-row-reverse gap-2 w-full">

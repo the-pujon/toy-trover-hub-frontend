@@ -72,12 +72,6 @@ const Navbar = () => {
               </ul>
             </div>
             <Link to="/" className="normal-case ">
-              {/*<h1 className="text-center text-3xl sm:text-6xl font-bold flex items-end">
-                TTH
-                <span className="text-xl hidden lg:block font-semibold">
-                  Toy Trover Hub
-                </span>
-              </h1>*/}
               <img src={TTH} alt="logo" className="w-44" />
             </Link>
           </div>
