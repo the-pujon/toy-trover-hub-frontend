@@ -10,6 +10,7 @@ import {
 } from "react-icons/ai";
 import CartDropDownContent from "../CartDropDownContent/CartDropDownContent";
 import { useSelector } from "react-redux";
+import TTH from "../../assets/logo/tth.png"
 
 const Navbar = () => {
   const { loggedUser, logOut, userLoading } = useUser();
@@ -71,12 +72,13 @@ const Navbar = () => {
               </ul>
             </div>
             <Link to="/" className="normal-case ">
-              <h1 className="text-center text-3xl sm:text-6xl font-bold flex items-end">
+              {/*<h1 className="text-center text-3xl sm:text-6xl font-bold flex items-end">
                 TTH
                 <span className="text-xl hidden lg:block font-semibold">
                   Toy Trover Hub
                 </span>
-              </h1>
+              </h1>*/}
+              <img src={TTH} alt="logo" className="w-44" />
             </Link>
           </div>
 
