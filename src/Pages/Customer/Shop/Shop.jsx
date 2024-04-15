@@ -191,12 +191,16 @@ const Shop = () => {
             </select>
           </div>
         </div>
+        <div className="flex items-center justify-center w-full text-4xl text-white font-semibold" >
+          {FilteredToys.length === 0 && <>Coming soon...</>}
+        </div>
         <div className="grid wrapper gap-2 lg:gap-5 xl:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {FilteredToys?.map((toy) => (
-            <div key={toy._id} className="justify-self-center" >
-              <ShopCard toy={toy} />
-            </div>
-          ))}
+          {FilteredToys.length !== 0 &&
+            FilteredToys?.map((toy) => (
+              <div key={toy._id} className="justify-self-center">
+                <ShopCard toy={toy} />
+              </div>
+            ))}
         </div>
       </>
     </div>
