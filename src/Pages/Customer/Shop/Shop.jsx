@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useApi from "../../../Hooks/useApi";
 import ShopCard from "../../../Components/ShopCard/ShopCard";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
+import Loading from "../../../Components/Loading/Loading";
 //import { FaSortAmountDownAlt, FaSortAmountUp } from "react-icons/fa";
 
 const Shop = () => {
@@ -10,6 +11,7 @@ const Shop = () => {
   const [category, setCategory] = useState([]);
   const [search, setSearch] = useState("");
   const [filterTextActive, setFilterTextActive] = useState("all");
+  const [loading, setLoading] = useState(true)
 
   const { get } = useApi();
 
@@ -17,6 +19,7 @@ const Shop = () => {
     get("toys").then((res) => {
       setAllToys(res);
       setFilteredToys(res);
+      setLoading(false)
     });
 
     fetch("/category.json")
@@ -191,8 +194,10 @@ const Shop = () => {
             </select>
           </div>
         </div>
+        {/* loading */}
+        <div className="flex items-center justify-center w-full text-4xl text-white font-semibold">{loading && <Loading/>}</div>
         <div className="flex items-center justify-center w-full text-4xl text-white font-semibold" >
-          {FilteredToys.length === 0 && <>Coming soon...</>}
+          {FilteredToys.length === 0 && !loading && <>Coming soon...</>}
         </div>
         <div className="grid wrapper gap-2 lg:gap-5 xl:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {FilteredToys.length !== 0 &&
